@@ -19,7 +19,12 @@
                 v-for="(menuItem, key) of menu"
                 :key="key"
               >
-                <v-img id="menuIcon" class="v-image v-responsive mx-2"
+                <nuxt-link v-if="menuItem.to.name" :to="menuItem.to.name">
+                  <v-img id="menuIcon" class="v-image v-responsive mx-2"
+                    :src="menuItem.img"
+                  />
+                </nuxt-link>
+                <v-img v-else id="menuIcon" class="v-image v-responsive mx-2"
                   :src="menuItem.img"
                 />
               </v-slide-item>
@@ -29,7 +34,7 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-btn v-on:click="closeWindow" id="close-btn" class="mx-3" fab dark small color="red">
+            <v-btn v-on:click="closeWindow" v-on="on" id="close-btn" class="mx-3" fab dark small color="red">
               <v-icon dark>mdi-close</v-icon>
             </v-btn>
             <nuxt-link to="/info" class="mx-3 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--small grey">
@@ -45,7 +50,6 @@
 <script>
 import { remote } from 'electron'
 import SystemInformation from '@/components/SystemInformation.vue'
-import electron from 'electron'
 
 export default {
   components: {
@@ -55,8 +59,32 @@ export default {
     return {
       menu: [
         {
+          img: require('../assets/appstorenx.png'),
+          to: { name: '/appstore/' }
+        },
+        {
           img: require('../assets/default.jpg'),
-          to: { name: '/' }
+          to: { name: '' }
+        },
+        {
+          img: require('../assets/default.jpg'),
+          to: { name: '' }
+        },
+        {
+          img: require('../assets/default.jpg'),
+          to: { name: '' }
+        },
+        {
+          img: require('../assets/default.jpg'),
+          to: { name: '' }
+        },
+        {
+          img: require('../assets/default.jpg'),
+          to: { name: '' }
+        },
+        {
+          img: require('../assets/default.jpg'),
+          to: { name: '' }
         },
         {
           img: require('../assets/default.jpg'),
@@ -64,43 +92,19 @@ export default {
         },
         {
           img: require('../assets/default.jpg'),
-          to: { name: '/' }
+          to: { name: '' }
         },
         {
           img: require('../assets/default.jpg'),
-          to: { name: '/' }
+          to: { name: '' }
         },
         {
           img: require('../assets/default.jpg'),
-          to: { name: '/' }
+          to: { name: '' }
         },
         {
           img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
+          to: { name: '' }
         }
       ]
     }
@@ -110,7 +114,7 @@ export default {
       remote.shell.openExternal(url)
     },
     closeWindow: function (event) {
-      var window = electron.remote.getCurrentWindow()
+      var window = remote.getCurrentWindow()
       window.close();
     }
   }

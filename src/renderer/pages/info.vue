@@ -19,17 +19,15 @@
           </v-col>
           <v-col cols="8">
             <v-card
-              class="mx-auto"
               outlined
               dark
             >
-            <v-card-title>
-              MeatReed
-            </v-card-title>
-
-            <v-card-subtitle>
-              Slurp :D
-            </v-card-subtitle>
+            <v-list-item three-line>
+              <v-list-item-content>
+                <div class="overline mb-4">Information</div>
+                <v-list-item-title class="headline mb-1">MeatReed</v-list-item-title>
+              </v-list-item-content>
+            </v-list-item>
             </v-card>
           </v-col>
         </v-row>
@@ -50,71 +48,20 @@
 
 <script>
 import { remote } from 'electron'
-import SystemInformation from '@/components/SystemInformation.vue'
 import electron from 'electron'
 
 export default {
-  components: {
-    SystemInformation
-  },
-  data () {
+  data() {
     return {
-      menu: [
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        }
-      ]
+      chrome: process.versions.chrome,
+      electron: process.versions.electron,
+      node: process.versions.node,
+      platform: require('os').platform(),
+      vue: require('vue/package.json').version,
+      nuxt: require('nuxt/package.json').version
     }
   },
   methods: {
-    openURL (url) {
-      remote.shell.openExternal(url)
-    },
     closeWindow: function (event) {
       var window = electron.remote.getCurrentWindow()
       window.close();

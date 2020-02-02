@@ -45,7 +45,7 @@ module.exports = {
   asar: false,
   productName: 'NSMultiTools',
   appId: 'org.meatreed.nsmultitools',
-  artifactName: 'my-nsmultitools-${version}.${ext}',
+  artifactName: 'nsmultitools-${version}.${ext}',
   directories: {
     output: 'build'
   },

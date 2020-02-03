@@ -126,10 +126,6 @@ export default {
   background: #2D2D2D;
 }
 
-.container {
-  padding-right: 100px !important;
-}
-
 #menuIcons {
   padding-left: 20px;
 }

@@ -43,6 +43,7 @@
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
-    "@nuxtjs/axios": "^5.9.5"
+    "@nuxtjs/axios": "^5.9.5",
+    "@nuxtjs/markdownit": "^1.2.7"
   }
 }

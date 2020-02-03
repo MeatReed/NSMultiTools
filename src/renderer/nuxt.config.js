@@ -8,7 +8,10 @@
 module.exports = {
   mode: 'spa', // or 'universal'
   head: {
-    title: 'nsmultitools'
+    title: 'nsmultitools',
+    meta: [
+      { charset: 'utf-8' }
+    ],
   },
   loading: false,
   plugins: [
@@ -21,8 +24,12 @@ module.exports = {
   ],
   modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/markdownit'
   ],
+  markdownit: {
+    injected: true
+  },
   vuetify: {
     theme: {
       themes: {

@@ -7,12 +7,19 @@
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">Switch Appstore</span>
-      <v-text-field
-        solo-inverted
+      <v-autocomplete
+        v-model="model"
+        :items="itemsPackage"
+        :loading="isLoading"
+        :search-input.sync="search"
+        cache-items
+        class="mx-4"
         flat
+        hide-no-data
         hide-details
-        label="Search"
-      />
+        label="Rechercher"
+        solo-inverted
+      ></v-autocomplete>
       <v-spacer />
     </v-app-bar>
     <v-navigation-drawer
@@ -59,13 +66,23 @@
 import { remote } from 'electron'
 
 export default {
-  methods: {
-    closeWindow: function(event) {
-      var window = remote.getCurrentWindow()
-      window.close();
-    },
+  async asyncData({ $axios }) {
+    try {
+      const data = await $axios.$get('https://www.switchbru.com/appstore/repo.json')
+
+      return {
+        allPackages: data.packages
+      }
+    } catch (e) {
+      console.log(e)
+    }
   },
   data: () => ({
+    nameLimit: 60,
+    isLoading: false,
+    entries: [],
+    search: null,
+    model: null,
     drawer: null,
     items: [
       { title: 'Accueil', icon: 'mdi-home', to: '/appstore' },
@@ -78,5 +95,45 @@ export default {
     ],
     right: null
   }),
+  computed: {
+      fields() {
+        if (!this.model) return []
+
+        return Object.keys(this.model).map(key => {
+          return {
+            key,
+            value: this.model[key] || 'n/a',
+          }
+        })
+      },
+      itemsPackage() {
+        return Object.values(this.entries).map(entry => {
+          const Name = entry.name
+          return Object.assign({}, entry, { Name })
+        })
+      },
+  },
+  watch: {
+    
+    search (val) {
+        this.isLoading = true
+        fetch('https://www.switchbru.com/appstore/repo.json')
+          .then(res => res.json())
+          .then(res => {
+            const entries = res.packages
+            this.entries = entries
+          })
+          .catch(err => {
+            console.log(err)
+          })
+          .finally(() => (this.isLoading = false))
+      }
+  },
+  methods: {
+    closeWindow: function(event) {
+      var window = remote.getCurrentWindow()
+      window.close();
+    }
+  }
 }
 </script>

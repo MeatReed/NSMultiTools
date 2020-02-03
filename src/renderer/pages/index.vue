@@ -49,12 +49,9 @@
 
 <script>
 import { remote } from 'electron'
-import SystemInformation from '@/components/SystemInformation.vue'
+
 
 export default {
-  components: {
-    SystemInformation
-  },
   data () {
     return {
       menu: [

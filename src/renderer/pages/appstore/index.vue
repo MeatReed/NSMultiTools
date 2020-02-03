@@ -36,7 +36,101 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn text>Télécharger</v-btn>
+                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
+                <v-btn
+                  text
+                  dark
+                  v-on:click="modalPackage(allPackages ,item.name)"
+                >
+                  Information
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container fluid>
+        <v-row>
+          <v-col>
+            <v-app-bar
+              dense
+              dark
+            >
+              <v-toolbar-title>Catégorie Outils</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <nuxt-link to="/appstore/tools" class="v-btn v-btn--contained theme--dark v-size--default">
+                Voir plus
+              </nuxt-link>
+            </v-app-bar>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col v-for="(item, index) of toolPackages" :key="index">
+            <v-card
+              class="mx-auto"
+              max-width="344"
+              outlined
+              dark
+            >
+              <v-img
+                class="white--text align-end"
+                height="200px"
+                :src="getIcon(item.name)"
+                @error="imgUrlAlt"
+              />
+              <v-card-title>
+                {{ item.name }}
+              </v-card-title>
+
+              <v-card-actions>
+                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
+                <v-btn
+                  text
+                  dark
+                  v-on:click="modalPackage(allPackages ,item.name)"
+                >
+                  Information
+                </v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container fluid>
+        <v-row>
+          <v-col>
+            <v-app-bar
+              dense
+              dark
+            >
+              <v-toolbar-title>Catégorie Avancés</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <nuxt-link to="/appstore/advanced" class="v-btn v-btn--contained theme--dark v-size--default">
+                Voir plus
+              </nuxt-link>
+            </v-app-bar>
+          </v-col>
+        </v-row>
+        <v-row>
+          <v-col v-for="(item, index) of advancedPackages" :key="index">
+            <v-card
+              class="mx-auto"
+              max-width="344"
+              outlined
+              dark
+            >
+              <v-img
+                class="white--text align-end"
+                height="200px"
+                :src="getIcon(item.name)"
+                @error="imgUrlAlt"
+              />
+              <v-card-title>
+                {{ item.name }}
+              </v-card-title>
+
+              <v-card-actions>
+                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
                 <v-btn
                   text
                   dark
@@ -64,8 +158,7 @@
         </v-img>
 
         <v-card-actions>
-          <v-btn text>Télécharger</v-btn>
-
+          <v-btn text v-on:click="download(modalTitle)">Télécharger</v-btn>
           <v-btn text v-on:click="openLink(modalSource)">Source</v-btn>
         </v-card-actions>
 
@@ -109,9 +202,37 @@ export default {
         }
       });
 
+      //Tools
+      const toolPackages = new Array;
+      let toolIndex = 0;
+      await data.packages.forEach((element, index) => {
+        if(element.category === "tool") {
+          toolIndex = toolIndex + 1
+          if (toolIndex > 8) {
+            return;
+          }
+          toolPackages.push(element)
+        }
+      });
+
+      //Advanced
+      const advancedPackages = new Array;
+      let advancedIndex = 0;
+      await data.packages.forEach((element, index) => {
+        if(element.category === "advanced") {
+          advancedIndex = advancedIndex + 1
+          if (advancedIndex > 8) {
+            return;
+          }
+          advancedPackages.push(element)
+        }
+      });
+
       return {
         allPackages: data.packages,
-        gamePackages: gamePackages
+        gamePackages: gamePackages,
+        toolPackages: toolPackages,
+        advancedPackages: advancedPackages
       }
     } catch (e) {
       console.log(e)
@@ -126,7 +247,6 @@ export default {
     },
     modalPackage(packages, name) {
       const select = packages.find(pkg => pkg.name === name)
-      console.log(select)
       this.modalTitle = select.name
       this.modalDesc = select.details.replace(/\n/g, "<br />")
       this.modalCategory = select.category
@@ -135,8 +255,10 @@ export default {
       this.modalVersion = select.version
       this.modalUpdated = select.updated
       this.modalSource = select.url
-      console.log(select)
       this.dialog = true
+    },
+    download(name) {
+      remote.shell.openExternal(`https://switchbru.com/appstore/zips/${name}.zip`);
     },
     getIcon: function(name) {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
@@ -197,6 +319,3 @@ export default {
   }),
 }
 </script>
-
-<style scoped>
-</style>

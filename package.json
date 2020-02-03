@@ -33,6 +33,7 @@
     "electron": "7.1.11",
     "electron-builder": "22.3.2",
     "electron-debug": "3.0.1",
+    "electron-winstaller": "^4.0.0",
     "nuxt": "2.11.0",
     "roboto-fontface": "0.10.0",
     "stylus": "0.54.7",

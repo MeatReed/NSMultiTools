@@ -3,8 +3,8 @@ const ICONS_DIR = 'build/icons/'
 const windowsOS = {
   win: {
     icon: ICONS_DIR + 'win-icon.ico',
-    publisherName: 'michal',
-    target: 'nsis'
+    publisherName: 'MeatReed',
+    target: '7z'
   },
 
   nsis: {
@@ -42,7 +42,7 @@ const macOS = {
 }
 
 module.exports = {
-  asar: false,
+  asar: true,
   productName: 'NSMultiTools',
   appId: 'org.meatreed.nsmultitools',
   artifactName: 'nsmultitools-${version}.${ext}',

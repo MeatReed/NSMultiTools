@@ -36,7 +36,7 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn text>Télécharger</v-btn>
+                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
                 <v-btn
                   text
                   dark
@@ -64,8 +64,7 @@
         </v-img>
 
         <v-card-actions>
-          <v-btn text>Télécharger</v-btn>
-
+          <v-btn text v-on:click="download(modalTitle)">Télécharger</v-btn>
           <v-btn text v-on:click="openLink(modalSource)">Source</v-btn>
         </v-card-actions>
 
@@ -131,6 +130,9 @@ export default {
       this.modalSource = select.url
       console.log(select)
       this.dialog = true
+    },
+    download(name) {
+      remote.shell.openExternal(`https://switchbru.com/appstore/zips/${name}.zip`);
     },
     getIcon: function(name) {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`

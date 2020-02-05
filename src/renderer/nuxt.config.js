@@ -22,8 +22,7 @@ module.exports = {
   ],
   modules: [
     '@nuxtjs/vuetify',
-    '@nuxtjs/axios',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/axios'
   ],
   markdownit: {
     injected: true

@@ -54,7 +54,7 @@
       v-model="dialog"
       max-width="550"
     >
-      <v-card>
+      <v-card dark>
         <v-img
           class="white--text align-end"
           height="200px"
@@ -73,9 +73,9 @@
         <v-card-subtitle class="pb-0"><strong>Mise à jour le : </strong>{{ modalUpdated }}</v-card-subtitle>
         <br />
         <v-card-text class="text--primary">
-          <div><strong>Author : </strong>{{ modalAuthor }}</div>
+          <div class="author"><strong>Author : </strong>{{ modalAuthor }}</div>
           <div v-html="getFormatedDesc(modalDesc)"></div>
-          <div><strong>Changelog : </strong></div>
+          <div class="changelog"><strong>Changelog : </strong></div>
           <div v-html="getFormatedDesc(modalChangelog)"></div>
         </v-card-text>
       </v-card>
@@ -119,7 +119,6 @@ export default {
     },
     modalPackage(packages, name) {
       const select = packages.find(pkg => pkg.name === name)
-      console.log(select)
       this.modalTitle = select.name
       this.modalDesc = select.details.replace(/\n/g, "<br />")
       this.modalCategory = select.category
@@ -128,7 +127,6 @@ export default {
       this.modalVersion = select.version
       this.modalUpdated = select.updated
       this.modalSource = select.url
-      console.log(select)
       this.dialog = true
     },
     download(name) {
@@ -138,7 +136,6 @@ export default {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
     },
     imgUrlAlt(event) {
-      console.log(event)
       event = "data:image/png;base64,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"
     }
   },

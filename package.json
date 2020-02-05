@@ -1,6 +1,6 @@
 {
   "name": "nsmultitools",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "An electron-nuxt project",
   "main": "./dist/main/index.js",
   "scripts": {
@@ -45,6 +45,9 @@
   },
   "dependencies": {
     "@nuxtjs/axios": "^5.9.5",
-    "@nuxtjs/markdownit": "^1.2.7"
+    "node-gyp": "^6.1.0",
+    "unzipper": "^0.10.7",
+    "url-download": "^0.0.8",
+    "usb": "^1.6.2"
   }
 }

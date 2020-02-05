@@ -52,60 +52,60 @@ import { remote } from 'electron'
 
 
 export default {
-  data () {
-    return {
-      menu: [
-        {
-          img: require('../assets/appstorenx.png'),
-          to: { name: '/appstore/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '/' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        },
-        {
-          img: require('../assets/default.jpg'),
-          to: { name: '' }
-        }
-      ]
-    }
-  },
+  data: () => ({
+    menu: [
+      {
+        name: "Switch Appstore",
+        img: require('../assets/appstorenx.png'),
+        to: { name: '/appstore' }
+      },
+      {
+        name: "Inject Payload",
+        img: require('../assets/smashFistIcon.png'),
+        to: { name: '/inject' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '/' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      },
+      {
+        img: require('../assets/default.jpg'),
+        to: { name: '' }
+      }
+    ]
+  }),
   methods: {
     openURL (url) {
       remote.shell.openExternal(url)

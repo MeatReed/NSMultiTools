@@ -18,4 +18,16 @@ body {
 #inspire {
   background: #2D2D2D;
 }
+
+p {
+  color: #FFFFFF;
+}
+
+.author {
+  color: #FFFFFF;
+}
+
+.changelog {
+  color: #FFFFFF;
+}
 </style>

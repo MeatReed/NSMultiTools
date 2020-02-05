@@ -12,13 +12,15 @@
         :items="itemsPackage"
         :loading="isLoading"
         :search-input.sync="search"
-        cache-items
-        class="mx-4"
-        flat
+        color="white"
         hide-no-data
-        hide-details
-        label="Rechercher"
-        solo-inverted
+        hide-selected
+        item-text="Description"
+        item-value="API"
+        label="Public APIs"
+        placeholder="Start typing to Search"
+        prepend-icon="mdi-database-search"
+        return-object="true"
       ></v-autocomplete>
       <v-spacer />
     </v-app-bar>
@@ -79,10 +81,10 @@ export default {
   },
   data: () => ({
     nameLimit: 60,
+    packages: [],
     isLoading: false,
-    entries: [],
-    search: null,
     model: null,
+    search: null,
     drawer: null,
     items: [
       { title: 'Accueil', icon: 'mdi-home', to: '/appstore' },
@@ -100,6 +102,7 @@ export default {
         if (!this.model) return []
 
         return Object.keys(this.model).map(key => {
+          console.log(this.model)
           return {
             key,
             value: this.model[key] || 'n/a',
@@ -107,21 +110,26 @@ export default {
         })
       },
       itemsPackage() {
-        return Object.values(this.entries).map(entry => {
-          const Name = entry.name
+        return this.packages.map(entry => {
+          const Name = entry.name.length > this.nameLimit
+            ? entry.name.slice(0, this.nameLimit) + '...'
+            : entry.name
+
           return Object.assign({}, entry, { Name })
         })
       },
   },
   watch: {
-    
     search (val) {
+
+        if (this.isLoading) return
+
         this.isLoading = true
         fetch('https://www.switchbru.com/appstore/repo.json')
           .then(res => res.json())
           .then(res => {
-            const entries = res.packages
-            this.entries = entries
+            const { packages } = res
+            this.packages = packages
           })
           .catch(err => {
             console.log(err)

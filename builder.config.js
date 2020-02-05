@@ -4,7 +4,11 @@ const windowsOS = {
   win: {
     icon: ICONS_DIR + 'win-icon.ico',
     publisherName: 'MeatReed',
-    target: '7z'
+    target: [
+      {
+        "target": "nsis"
+      }
+    ]
   },
 
   nsis: {

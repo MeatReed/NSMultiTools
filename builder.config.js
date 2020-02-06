@@ -7,6 +7,12 @@ const windowsOS = {
     target: [
       {
         "target": "nsis"
+      },
+      {
+        "target": "7z"
+      },
+      {
+        "target": "zip"
       }
     ]
   },

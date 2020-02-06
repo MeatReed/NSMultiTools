@@ -14,11 +14,8 @@
         :search-input.sync="search"
         color="white"
         hide-no-data
-        hide-selected
-        item-text="Description"
         item-value="API"
-        label="Public APIs"
-        placeholder="Start typing to Search"
+        placeholder="Rechercher"
         prepend-icon="mdi-database-search"
         return-object="true"
       ></v-autocomplete>

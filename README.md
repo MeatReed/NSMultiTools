@@ -1,6 +1,18 @@
-# nsmultitools
+# NSMultiTools
 
-> An electron-nuxt project
+> Interface graphique sous Windows permettant de facilité la vie aux hackeurs Nintendo Switch :D 🍭
+
+## Previews
+
+![N|Solid](https://i.imgur.com/zRJUi9F.png)
+
+### Credits
+
+* [electron](https://www.electronjs.org/)
+* [electron-nuxt](https://github.com/michalzaq12/electron-nuxt)
+* [Switch Appstore](https://www.switchbru.com/appstore/#/)
+* [TegraRcmSmash](https://github.com/rajkosto/TegraRcmSmash)
+
 
 #### Build Setup
 
@@ -18,5 +30,3 @@ yarn run build
 ```
 
 ---
-
-This project was generated with [electron-nuxt](https://github.com/michalzaq12/electron-nuxt) v1.4.0 using [vue-cli](https://github.com/vuejs/vue-cli). Documentation about the original structure can be found [here](https://github.com/michalzaq12/electron-nuxt/blob/master/README.md).

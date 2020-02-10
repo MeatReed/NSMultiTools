@@ -6,21 +6,9 @@
       dark
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <span class="title ml-3 mr-5">Switch Appstore</span>
-      <v-autocomplete
-        v-model="model"
-        :items="itemsPackage"
-        :loading="isLoading"
-        :search-input.sync="search"
-        color="white"
-        hide-no-data
-        item-value="API"
-        placeholder="Rechercher"
-        prepend-icon="mdi-database-search"
-        return-object="true"
-      ></v-autocomplete>
+      <span class="title ml-3 mr-5">NSMultiTools</span>
       <v-spacer />
-      <v-btn v-on:click="closeWindow" icon color="red">
+      <v-btn v-on:click="closeWindow"  icon color="red">
         <v-icon>mdi-close</v-icon>
       </v-btn>
     </v-app-bar>
@@ -51,15 +39,10 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-      <div class="pa-2">
-        <v-btn nuxt to="/apps" block color="grey">
-          Applications
-        </v-btn>
-      </div>
-      <div class="pa-2">
-        <v-btn v-on:click="closeWindow" block color="red">
-          Fermer
-        </v-btn>
+      <div class="pa-2 ">
+        <p class="font-weight-black body-1 text-center">
+          Make by MeatReed
+        </p>
       </div>
     </template>
   </v-navigation-drawer>
@@ -89,13 +72,9 @@ export default {
     search: null,
     drawer: null,
     items: [
-      { title: 'Accueil', icon: 'mdi-home', to: '/appstore' },
-      { title: 'Jeux', icon: 'mdi-play', to: '/appstore/games' },
-      { title: 'Emulateurs', icon: 'mdi-gamepad-variant-outline', to: '/appstore/emulators' },
-      { title: 'Outils', icon: 'mdi-tools', to: '/appstore/tools' },
-      { title: 'Avancés', icon: 'mdi-puzzle-outline', to: '/appstore/advanced' },
-      { title: 'Thèmes', icon: 'mdi-bookshelf', to: '/appstore/themes' },
-      { title: 'Misc', icon: 'mdi-cube-outline', to: '/appstore/misc' }
+      { title: 'Accueil', icon: 'mdi-home', to: '/' },
+      { title: 'Applications', icon: 'mdi-application', to: '/apps' },
+      { title: 'Informations', icon: 'mdi-play', to: '/info' }
     ],
     right: null
   }),

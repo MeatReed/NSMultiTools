@@ -11,7 +11,7 @@ module.exports = {
     title: 'nsmultitools',
     meta: [
       { charset: 'utf-8' }
-    ],
+    ]
   },
   loading: false,
   plugins: [

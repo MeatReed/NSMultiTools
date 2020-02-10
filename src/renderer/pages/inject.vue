@@ -1,94 +1,98 @@
 <template>
-  <v-container
-      class="fill-height"
-      fluid
-    >
-    <v-row
-      id="menuIcons"
-      align="center"
-      justify="start"
-    >
-      <v-col>
-        <v-row>
+  <div>
+    <app-header />
+    <v-content>
+      <p class="font-weight-black headline text-center">
+        Inject Payload
+      </p>
+      <v-container
+          class="fill-height"
+          fluid
+        >
+        <v-row
+          align="center"
+          justify="start"
+        >
           <v-col>
-            <v-alert :color="colorAlert">
-              {{ messageAlert }}
-            </v-alert>
-            <v-file-input
-              v-model="files"
-              placeholder="Choisir un payload"
-              label="Payload"
-              multiple
-              prepend-icon="mdi-paperclip"
-              dark
-            >
-              <template v-slot:selection="{ text }">
-                <v-chip
-                  small
-                  label
-                  color="primary"
+            <v-row>
+              <v-col>
+                <v-alert :color="colorAlert">
+                  {{ messageAlert }}
+                </v-alert>
+                <v-file-input
+                  v-model="files"
+                  placeholder="Choisir un payload"
+                  label="Payload"
+                  accept=".bin"
+                  prepend-icon="mdi-paperclip"
+                  dark
                 >
-                  {{ text }}
-                </v-chip>
-              </template>
-            </v-file-input>
-            <v-btn text v-on:click="launchPayload()" dark>Injecter</v-btn>
-          </v-col>
-          <v-col>
-            <v-textarea
-              dark
-              disabled
-              clearable
-              outlined
-              name="input-7-4"
-              label="Log"
-              :value="textareaValue"
-            ></v-textarea>
+                  <template v-slot:selection="{ text }">
+                    <v-chip
+                      small
+                      label
+                      color="primary"
+                    >
+                      {{ text }}
+                    </v-chip>
+                  </template>
+                </v-file-input>
+                <v-btn text v-on:click="launchPayload()" dark>Injecter</v-btn>
+              </v-col>
+              <v-col>
+                <v-textarea
+                  v-model="areaConsole"
+                  dark
+                  readonly
+                  outlined
+                  no-resize
+                  label="Log"
+                ></v-textarea>
+              </v-col>
+            </v-row>
           </v-col>
         </v-row>
         <v-row>
           <v-col>
-            <v-btn v-on:click="closeWindow" id="close-btn" class="mx-3" fab dark small color="red">
-              <v-icon dark>mdi-close</v-icon>
-            </v-btn>
-            <nuxt-link to="/" class="mx-3 v-btn v-btn--contained v-btn--fab v-btn--round theme--dark v-size--small grey">
-              <v-icon dark>mdi-home</v-icon>
-            </nuxt-link>
+            <v-btn dark v-on:click="openURL('http://www.logic-sunrise.com/forums/topic/81670-demarrer-la-switch-en-mode-rcm/')">Mettre sa Nintendo Switch en mode RCM ?</v-btn>
+          </v-col>
+          <v-col dark>
+            <v-btn dark nuxt to="/ssnc">Vérifier si sa Nintendo Switch est compatible</v-btn>
           </v-col>
         </v-row>
-      </v-col>
-      <v-dialog
-      v-model="dialog"
-      max-width="290"
-    >
-      <v-card dark>
-        <v-card-title class="headline">Installer les drivers ?</v-card-title>
+        <v-dialog
+          v-model="dialog"
+          max-width="290"
+        >
+          <v-card dark>
+            <v-card-title class="headline">Installer les drivers ?</v-card-title>
 
-        <v-card-text>
-          Les drivers ne sont pas installés, cliquez sur <kbd>J'accepte</kbd> pour les installer et recommencez.
-        </v-card-text>
+            <v-card-text>
+              Les drivers ne sont pas installés, cliquez sur <kbd>J'accepte</kbd> pour les installer et recommencez.
+            </v-card-text>
 
-        <v-card-actions>
-          <v-spacer></v-spacer>
+            <v-card-actions>
+              <v-spacer></v-spacer>
 
-          <v-btn
-            text
-            @click="dialog = false"
-          >
-            Je n'accepte pas
-          </v-btn>
+              <v-btn
+                text
+                @click="dialog = false"
+              >
+                Je n'accepte pas
+              </v-btn>
 
-          <v-btn
-            text
-            v-on:click="installDriver()"
-          >
-            J'accepte
-          </v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-    </v-row>
-  </v-container>
+              <v-btn
+                text
+                v-on:click="installDriver()"
+              >
+                J'accepte
+              </v-btn>
+            </v-card-actions>
+          </v-card>
+        </v-dialog>
+      </v-container>
+    </v-content>
+  </div>
 </template>
 
 <script>
@@ -96,6 +100,7 @@ import { remote } from 'electron'
 import usb from 'usb'
 import fs from 'fs'
 import { exec, spawn } from 'child_process'
+import appHeader from '@/components/navigationHome'
 
 let usbVerifyLaunch = usb.getDeviceList().find(function(d) {
   return d.deviceDescriptor.idVendor === 0x0955
@@ -115,12 +120,15 @@ if(!usbConnect) {
 }
 
 export default {
+  components: {
+    appHeader
+  },
   data: () => ({
-      files: [],
-      messageAlert: messageAlert,
-      colorAlert: colorAlert,
-      textareaValue: null,
-      dialog: false
+    files: [],
+    messageAlert: messageAlert,
+    colorAlert: colorAlert,
+    dialog: false,
+    areaConsole: null
   }),
   mounted () {
     usb.on('attach', (device) => {
@@ -137,6 +145,9 @@ export default {
     })
   },
   methods: {
+    openURL(url) {
+      remote.shell.openExternal(url)
+    },
     onUsb: function(type) {
       if(type === 'attach') {
         this.colorAlert = "green"
@@ -151,25 +162,20 @@ export default {
       exec(`${process.cwd()}/apx_driver/InstallDriver.exe`)
     },
     async launchPayload(payload) {
-
       if(usbConnect === false) {
-        this.colorAlert = "green"
+        this.colorAlert = "red"
         this.messageAlert = "La Nintendo Switch n'est pas connectée à l'ordinateur ou en mode RCM !"
         return;
       };
-
-      if(!this.files[0]) {
+      if(!this.files) {
         this.colorAlert = "red"
         this.messageAlert = "Vous n'avez pas sélectionné de payload !"
         return;
       };
-
-      let smash = spawn(`${process.cwd()}/TegraRcmSmash/TegraRcmSmash.exe`, [`${this.files[0].path}`]);
-
+      let smash = spawn(`${process.cwd()}/TegraRcmSmash/TegraRcmSmash.exe`, [`${this.files.path}`]);
       smash.stdout.on('data', (data) => {
-        this.textareaValue = data.toString()
+        this.areaConsole = data.toString()
       });
-
       smash.on('exit', (code) => {
         if(code === 4294967290) {
           this.colorAlert = "red"
@@ -179,39 +185,17 @@ export default {
           this.colorAlert = "green"
           this.messageAlert = "Payload injecté !"
         }
-      });
-    
+      })
     },
     closeWindow: function (event) {
       var window = remote.getCurrentWindow()
-      window.close();
+      window.close()
     }
   }
 }
 </script>
 
 <style scoped>
-.v-slide-group {
-  background: #2D2D2D;
-}
-
-#menuIcons {
-  padding-left: 20px;
-}
-
-#menuIcon {
-  height: 250px;
-  width: 250px;
-}
-
-.align-center {
-    align-items: center !important;
-}
-
-.justify-start {
-    justify-content: flex-start !important;
-}
-
 .col {
   text-align: center;
 }

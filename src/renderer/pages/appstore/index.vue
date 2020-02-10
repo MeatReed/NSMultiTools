@@ -11,9 +11,9 @@
             >
               <v-toolbar-title>Catégorie Jeux</v-toolbar-title>
               <v-spacer></v-spacer>
-              <nuxt-link to="/appstore/games" class="v-btn v-btn--contained theme--dark v-size--default">
+              <v-btn nuxt to="/appstore/games">
                 Voir plus
-              </nuxt-link>
+              </v-btn>
             </v-app-bar>
           </v-col>
         </v-row>
@@ -58,9 +58,9 @@
             >
               <v-toolbar-title>Catégorie Outils</v-toolbar-title>
               <v-spacer></v-spacer>
-              <nuxt-link to="/appstore/tools" class="v-btn v-btn--contained theme--dark v-size--default">
+              <v-btn nuxt to="/appstore/tools">
                 Voir plus
-              </nuxt-link>
+              </v-btn>
             </v-app-bar>
           </v-col>
         </v-row>
@@ -105,9 +105,9 @@
             >
               <v-toolbar-title>Catégorie Avancés</v-toolbar-title>
               <v-spacer></v-spacer>
-              <nuxt-link to="/appstore/advanced" class="v-btn v-btn--contained theme--dark v-size--default">
+              <v-btn nuxt to="/appstore/advanced">
                 Voir plus
-              </nuxt-link>
+              </v-btn>
             </v-app-bar>
           </v-col>
         </v-row>
@@ -243,7 +243,7 @@ export default {
         return e = e.replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, '<a href="$&">$&</a>'), e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\t/g, "&#9;"), e = "<p>" + e.replace(/\\n\s*\\n/g, "</p><p>") + "</p>", e = e.replace(/<p>\s*<\/p>/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
     },
     openLink(link) {
-        require("electron").shell.openExternal(link);
+        remote.shell.openExternal(link);
     },
     modalPackage(packages, name) {
       const select = packages.find(pkg => pkg.name === name)

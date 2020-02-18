@@ -3,6 +3,13 @@
     <v-content>
       <nuxt />
     </v-content>
+    <v-footer
+      app
+    >
+      <span>Make by MeatReed</span>
+      <v-spacer />
+      <span>&copy; 2020</span>
+    </v-footer>
   </v-app>
 </template>
 
@@ -13,10 +20,6 @@
 
 body {
   font-family: Helvetica, sans-serif;
-}
-
-#inspire {
-  background: #2D2D2D;
 }
 
 p {

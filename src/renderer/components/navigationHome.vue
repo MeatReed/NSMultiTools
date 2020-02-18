@@ -3,7 +3,6 @@
   <v-app-bar
       app
       clipped-left
-      dark
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">NSMultiTools</span>
@@ -16,7 +15,6 @@
     v-model="drawer"
     app
     clipped
-    dark
   >
     <v-list
       dense
@@ -39,10 +37,10 @@
       </v-list-item>
     </v-list>
     <template v-slot:append>
-      <div class="pa-2 ">
-        <p class="font-weight-black body-1 text-center">
-          Make by MeatReed
-        </p>
+      <div class="pa-2">
+        <v-btn nuxt :to="localePath('/options')" block>
+          Options
+        </v-btn>
       </div>
     </template>
   </v-navigation-drawer>
@@ -53,71 +51,14 @@
 import { remote } from 'electron'
 
 export default {
-  async asyncData({ $axios }) {
-    try {
-      const data = await $axios.$get('https://www.switchbru.com/appstore/repo.json')
-
-      return {
-        allPackages: data.packages
-      }
-    } catch (e) {
-      console.log(e)
-    }
-  },
-  data: () => ({
-    nameLimit: 60,
-    packages: [],
-    isLoading: false,
-    model: null,
-    search: null,
+  data: ({ localePath, $i18n }) => ({
     drawer: null,
     items: [
-      { title: 'Accueil', icon: 'mdi-home', to: '/' },
-      { title: 'Applications', icon: 'mdi-application', to: '/apps' },
-      { title: 'Informations', icon: 'mdi-play', to: '/info' }
-    ],
-    right: null
+      { title: $i18n.t('links.home'), icon: 'mdi-home', to: localePath('/') },
+      { title: $i18n.t('links.applications'), icon: 'mdi-application', to: localePath('/apps') },
+      { title: $i18n.t('links.information'), icon: 'mdi-play', to: localePath('/info') }
+    ]
   }),
-  computed: {
-      fields() {
-        if (!this.model) return []
-
-        return Object.keys(this.model).map(key => {
-          console.log(this.model)
-          return {
-            key,
-            value: this.model[key] || 'n/a',
-          }
-        })
-      },
-      itemsPackage() {
-        return this.packages.map(entry => {
-          const Name = entry.name.length > this.nameLimit
-            ? entry.name.slice(0, this.nameLimit) + '...'
-            : entry.name
-
-          return Object.assign({}, entry, { Name })
-        })
-      },
-  },
-  watch: {
-    search (val) {
-
-        if (this.isLoading) return
-
-        this.isLoading = true
-        fetch('https://www.switchbru.com/appstore/repo.json')
-          .then(res => res.json())
-          .then(res => {
-            const { packages } = res
-            this.packages = packages
-          })
-          .catch(err => {
-            console.log(err)
-          })
-          .finally(() => (this.isLoading = false))
-      }
-  },
   methods: {
     closeWindow: function(event) {
       var window = remote.getCurrentWindow()

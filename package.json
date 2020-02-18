@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
+    "build-ele": "npx replace-in-file 'templates/' 'templates' node_modules/nuxt-i18n/src/helpers/constants.js && node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
     "test": "",
     "preinstall": "node .electron-nuxt/check-engines.js",
     "postinstall": "electron-builder install-app-deps "
@@ -44,9 +45,15 @@
     "webpack-node-externals": "1.7.2"
   },
   "dependencies": {
+    "@bazzite/nuxt-optimized-images": "^0.3.0",
     "@nuxtjs/axios": "^5.9.5",
+    "electron-db": "https://github.com/MeatReed/electron-db",
     "electron-download-manager": "^2.1.2",
+    "imagemin-mozjpeg": "^8.0.0",
+    "imagemin-pngquant": "^8.0.0",
     "node-gyp": "^6.1.0",
+    "nuxt-i18n": "^6.5.0",
+    "replace-in-file": "^5.0.2",
     "unzipper": "^0.10.7",
     "url-download": "^0.0.8",
     "usb": "^1.6.2",

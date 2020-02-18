@@ -5,3 +5,4 @@ build/*
 node_modules
 TegraRcmSmash/*
 apx_driver/*
+ssnc/*

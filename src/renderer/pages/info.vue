@@ -14,14 +14,13 @@
           <v-col cols="4">
             <v-avatar tile size="250">
               <v-img
-                src="https://cdn.discordapp.com/avatars/556940395473534986/18a11fb44332ef788333eaf9be1853ba.png?size=2048"
+                src="https://cdn.discordapp.com/avatars/556940395473534986/6a0bc85e4504fde7f2e8900821281dc8.png?size=2048"
               />
             </v-avatar>
           </v-col>
           <v-col cols="8">
             <v-card
               outlined
-              dark
             >
             <v-list-item three-line>
               <v-list-item-content>
@@ -36,9 +35,9 @@
               </v-list-item-content>
             </v-list-item>
             <v-card-actions>
-              <v-btn text v-on:click="openLink('https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA')"><v-icon dark>mdi-youtube</v-icon>Youtube</v-btn>
-              <v-btn text  v-on:click="openLink('https://discord.gg/9q7E6df')"><v-icon dark>mdi-discord</v-icon>Discord</v-btn>
-              <v-btn text v-on:click="openLink('https://github.com/MeatReed')"><v-icon dark>mdi-github-circle</v-icon>Github</v-btn>
+              <v-btn text v-on:click="openLink('https://www.youtube.com/channel/UCxcgIQ08IewI19Q_eiJxKRA')"><v-icon>mdi-youtube</v-icon>Youtube</v-btn>
+              <v-btn text  v-on:click="openLink('https://discord.gg/9q7E6df')"><v-icon>mdi-discord</v-icon>Discord</v-btn>
+              <v-btn text v-on:click="openLink('https://github.com/MeatReed')"><v-icon>mdi-github-circle</v-icon>Github</v-btn>
             </v-card-actions>
             </v-card>
           </v-col>
@@ -70,10 +69,6 @@ export default {
   methods: {
     openLink(link) {
         remote.shell.openExternal(link);
-    },
-    closeWindow: function (event) {
-      var window = remote.getCurrentWindow()
-      window.close();
     }
   }
 }

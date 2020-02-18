@@ -13,13 +13,12 @@
                 class="mx-auto"
                 :elevation="hover ? 16 : 2"
                 outlined
-                dark
               >
                 <v-card-title>
                   News test 1
                 </v-card-title>
                 <v-card-subtitle>
-                  Écrit par MeatReed
+                  {{ $t('index.createdby') }} MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"
@@ -38,13 +37,12 @@
                 class="mx-auto"
                 :elevation="hover ? 16 : 2"
                 outlined
-                dark
               >
                 <v-card-title>
                   News test 2
                 </v-card-title>
                 <v-card-subtitle>
-                  Écrit par MeatReed
+                  {{ $t('index.createdby') }} MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"
@@ -63,13 +61,12 @@
                 class="mx-auto"
                 :elevation="hover ? 16 : 2"
                 outlined
-                dark
               >
                 <v-card-title>
                   News test 3
                 </v-card-title>
                 <v-card-subtitle>
-                  Écrit par MeatReed
+                  {{ $t('index.createdby') }} MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"
@@ -88,38 +85,17 @@
 <script>
 import { remote } from 'electron'
 import appHeader from '@/components/navigationHome'
+import path from 'path'
+import db from 'electron-db'
 
 export default {
   components: {
     appHeader
   },
-  data: () => ({
-    menu: [
-      {
-        name: "Switch Appstore",
-        img: require('../assets/appstorenx.png'),
-        to: { name: '/appstore' }
-      },
-      {
-        name: "Inject Payload",
-        img: require('../assets/smashFistIcon.png'),
-        to: { name: '/inject' }
-      },
-      {
-        name: "SysDVR",
-        img: require('../assets/sysdvr.png'),
-        to: { name: '/sysdvr' }
-      }
-    ]
-  }),
-  methods: {
-    openURL (url) {
-      remote.shell.openExternal(url)
-    },
-    closeWindow: function (event) {
-      var window = remote.getCurrentWindow()
-      window.close();
-    }
+  beforeCreate() {
+    db.getField('config', 'dark', (succ, data) => {
+      this.$vuetify.theme.dark = data[0]
+    })
   }
 }
 </script>

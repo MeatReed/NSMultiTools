@@ -7,12 +7,11 @@
           <v-col>
             <v-app-bar
               dense
-              dark
             >
-              <v-toolbar-title>Catégorie Misc</v-toolbar-title>
+              <v-toolbar-title>{{ $t('appstore.category') }} {{ $t('appstore.misc') }}</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn nuxt to="/appstore">
-                Retourner à l'accueil
+              <v-btn nuxt :to="localePath('/appstore')">
+                {{ $t('appstore.return') }}
               </v-btn>
             </v-app-bar>
           </v-col>
@@ -23,7 +22,6 @@
               class="mx-auto"
               max-width="344"
               outlined
-              dark
             >
               <v-img
                 class="white--text align-end"
@@ -36,13 +34,12 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
+                <v-btn text v-on:click="download(item.name)">{{ $t('appstore.download') }}</v-btn>
                 <v-btn
                   text
-                  dark
                   v-on:click="modalPackage(miscPackages ,item.name)"
                 >
-                  Information
+                  {{ $t('appstore.information') }}
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -54,7 +51,7 @@
       v-model="dialog"
       max-width="550"
     >
-      <v-card dark>
+      <v-card>
         <v-img
           class="white--text align-end"
           height="200px"
@@ -64,16 +61,16 @@
         </v-img>
 
         <v-card-actions>
-          <v-btn text v-on:click="download(modalTitle)">Télécharger</v-btn>
-          <v-btn text v-on:click="openLink(modalSource)">Source</v-btn>
+          <v-btn text v-on:click="download(modalTitle)">{{ $t('appstore.download') }}</v-btn>
+          <v-btn text v-on:click="openLink(modalSource)">{{ $t('appstore.source') }}</v-btn>
         </v-card-actions>
 
-        <v-card-subtitle class="pb-0"><strong>Catégorie : </strong>{{ modalCategory }}</v-card-subtitle>
-        <v-card-subtitle class="pb-0"><strong>Version : </strong>{{ modalVersion }}</v-card-subtitle>
-        <v-card-subtitle class="pb-0"><strong>Mise à jour le : </strong>{{ modalUpdated }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.category') }} : </strong>{{ modalCategory }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.version') }} : </strong>{{ modalVersion }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.updated') }} : </strong>{{ modalUpdated }}</v-card-subtitle>
         <br />
         <v-card-text class="text--primary">
-          <div class="author"><strong>Author : </strong>{{ modalAuthor }}</div>
+          <div class="author"><strong>{{ $t('appstore.author') }} : </strong>{{ modalAuthor }}</div>
           <div v-html="getFormatedDesc(modalDesc)"></div>
           <div class="changelog"><strong>Changelog : </strong></div>
           <div v-html="getFormatedDesc(modalChangelog)"></div>
@@ -112,7 +109,7 @@ export default {
   },
   methods: {
     getFormatedDesc(e) {
-        return e = e.replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, '<a href="$&">$&</a>'), e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\t/g, "&#9;"), e = "<p>" + e.replace(/\\n\s*\\n/g, "</p><p>") + "</p>", e = e.replace(/<p>\s*<\/p>/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
+        return e = e.replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, '<a href="$&">$&</a>'), e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
     },
     openLink(link) {
         remote.shell.openExternal(link);

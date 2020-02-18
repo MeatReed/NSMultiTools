@@ -14,16 +14,15 @@
                 :elevation="hover ? 16 : 2"
                 max-width="344"
                 outlined
-                dark
                 nuxt
                 :to="item.to.name"
               >
                 <v-card-title>
                   {{ item.name }}
                 </v-card-title>
-                  <v-img class="white--text align-end"
-                    :src="item.img"
-                  />
+                <v-img class="white--text align-end"
+                  :src="item.img"
+                />
               </v-card>
             </v-hover>
           </v-col>
@@ -41,39 +40,29 @@ export default {
   components: {
     appHeader
   },
-  data: () => ({
+  data: ({ localePath }) => ({
     menu: [
       {
         name: "Switch Appstore",
         img: require('../assets/appstorenx.png'),
-        to: { name: '/appstore' }
+        to: { name: localePath('/appstore') }
       },
       {
         name: "Inject Payload",
         img: require('../assets/smashFistIcon.png'),
-        to: { name: '/inject' }
+        to: { name: localePath('/inject') }
       },
       {
         name: "SysDVR",
         img: require('../assets/sysdvr.png'),
-        to: { name: '/sysdvr' }
+        to: { name: localePath('/sysdvr') }
+      },
+      {
+        name: "IMSP",
+        img: require('../assets/imsp.png'),
+        to: { name: localePath('/imsp') }
       }
     ]
-  }),
-  methods: {
-    openURL (url) {
-      remote.shell.openExternal(url)
-    },
-    closeWindow: function (event) {
-      var window = remote.getCurrentWindow()
-      window.close();
-    }
-  }
+  })
 }
 </script>
-
-<style scoped>
-.col {
-  text-align: center;
-}
-</style>

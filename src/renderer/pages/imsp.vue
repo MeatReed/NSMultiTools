@@ -23,8 +23,8 @@
               <v-col>
                 <v-text-field
                   v-model="serialInput"
-                  :label="$t('imsp.sn')"
-                  :placeholder="$t('imsp.example')"
+                  label="Numéro de série"
+                  placeholder="Exemple : XAJ10011683536 ou XAJ1 0011683536"
                   @input="inputUpdate"
                 />
                 <v-alert
@@ -40,24 +40,24 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-btn @click.stop="dialog = true">{{ $t('imsp.where') }}</v-btn>
+            <v-btn @click.stop="dialog = true">Où trouver son numéro de série ?</v-btn>
           </v-col>
           <v-col>
-            <v-btn nuxt to="/inject">{{ $t('imsp.injectMessage') }}</v-btn>
+            <v-btn nuxt to="/inject">Injecter un payload sur sa Nintendo Switch</v-btn>
           </v-col>
         </v-row>
         <v-dialog
           v-model="dialog"
         >
           <v-card>
-            <v-card-title class="headline">{{ $t('imsp.where') }}</v-card-title>
+            <v-card-title class="headline">Où trouver son numéro de série ?</v-card-title>
 
             <v-card-text>
-              {{ $t('imsp.threeways') }}
+              Il y a trois façons de trouver le numéro de série de sa Nintendo Switch
               <ol>
-                <li>{{ $t('imsp.packaging') }}</li>
-                <li>{{ $t('imsp.console') }}<v-img :src="require('../assets/serie.png')" aspect-ratio="2" /></li>
-                <li>{{ $t('imsp.parameterMsgOne') }} <kbd>Console</kbd> {{ $t('imsp.parameterMsgTwo') }} <kbd>{{ $t('imsp.sn') }}</kbd></li>
+                <li>Sur l'emballage de la console situé sur la face inférieure.</li>
+                <li>Sur la console situé en bas.<v-img :src="require('../assets/serie.png')" aspect-ratio="2" /></li>
+                <li>Ou dans les paramètres de la console en allant dans <kbd>Console</kbd> et ensuite <kbd>Numéro de série</kbd></li>
               </ol>
             </v-card-text>
 
@@ -68,7 +68,7 @@
                 text
                 @click="dialog = false"
               >
-                {{ $t('imsp.close') }}
+                Fermer
               </v-btn>
             </v-card-actions>
           </v-card>

@@ -28,7 +28,7 @@ export default {
       emulators: 'Emulateurs',
       tools: 'Outils',
       advanced: 'Avancés',
-      themes: 'Thème',
+      themes: 'Thèmes',
       misc: 'Misc',
       more: 'Voir plus',
       download: 'Télécharger',

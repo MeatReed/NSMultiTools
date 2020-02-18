@@ -8,10 +8,10 @@
             <v-app-bar
               dense
             >
-              <v-toolbar-title>{{ $t('appstore.category') }} {{ $t('appstore.emulators') }}</v-toolbar-title>
+              <v-toolbar-title>Catégorie Emulateurs</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn nuxt :to="localePath('/appstore')">
-                {{ $t('appstore.return') }}
+              <v-btn nuxt to="/appstore">
+                Retourner à l'accueil
               </v-btn>
             </v-app-bar>
           </v-col>
@@ -34,12 +34,12 @@
               </v-card-title>
 
               <v-card-actions>
-                <v-btn text v-on:click="download(item.name)">{{ $t('appstore.download') }}</v-btn>
+                <v-btn text v-on:click="download(item.name)">Télécharger</v-btn>
                 <v-btn
                   text
                   v-on:click="modalPackage(emuPackages ,item.name)"
                 >
-                  {{ $t('appstore.information') }}
+                  Information
                 </v-btn>
               </v-card-actions>
             </v-card>
@@ -61,16 +61,16 @@
         </v-img>
 
         <v-card-actions>
-          <v-btn text v-on:click="download(modalTitle)">{{ $t('appstore.download') }}</v-btn>
-          <v-btn text v-on:click="openLink(modalSource)">{{ $t('appstore.source') }}</v-btn>
+          <v-btn text v-on:click="download(modalTitle)">Télécharger</v-btn>
+          <v-btn text v-on:click="openLink(modalSource)">Source</v-btn>
         </v-card-actions>
 
-        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.category') }} : </strong>{{ modalCategory }}</v-card-subtitle>
-        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.version') }} : </strong>{{ modalVersion }}</v-card-subtitle>
-        <v-card-subtitle class="pb-0"><strong>{{ $t('appstore.updated') }} : </strong>{{ modalUpdated }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>Catégorie : </strong>{{ modalCategory }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>Version : </strong>{{ modalVersion }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>Mise à jour le : </strong>{{ modalUpdated }}</v-card-subtitle>
         <br />
         <v-card-text class="text--primary">
-          <div class="author"><strong>{{ $t('appstore.author') }} : </strong>{{ modalAuthor }}</div>
+          <div class="author"><strong>Auteur : </strong>{{ modalAuthor }}</div>
           <div v-html="getFormatedDesc(modalDesc)"></div>
           <div class="changelog"><strong>Changelog : </strong></div>
           <div v-html="getFormatedDesc(modalChangelog)"></div>

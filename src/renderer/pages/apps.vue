@@ -40,27 +40,27 @@ export default {
   components: {
     appHeader
   },
-  data: ({ localePath }) => ({
+  data: () => ({
     menu: [
       {
         name: "Switch Appstore",
         img: require('../assets/appstorenx.png'),
-        to: { name: localePath('/appstore') }
+        to: { name: '/appstore' }
       },
       {
         name: "Inject Payload",
         img: require('../assets/smashFistIcon.png'),
-        to: { name: localePath('/inject') }
+        to: { name: '/inject' }
       },
       {
         name: "SysDVR",
         img: require('../assets/sysdvr.png'),
-        to: { name: localePath('/sysdvr') }
+        to: { name: '/sysdvr' }
       },
       {
         name: "IMSP",
         img: require('../assets/imsp.png'),
-        to: { name: localePath('/imsp') }
+        to: { name: '/imsp' }
       }
     ]
   })

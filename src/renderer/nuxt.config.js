@@ -3,18 +3,15 @@
  * This default configuration can be overwritten in this file
  * @link {https://nuxtjs.org/guide/configuration/}
  */
-const db = require('electron-db');
-const path = require('path')
-
 module.exports = {
-  mode: 'universal',
+  mode: 'spa',
   head: {
     title: 'nsmultitools',
     meta: [
       { charset: 'utf-8' }
     ]
   },
-  loading: false,
+  loading: true,
   plugins: [
     {ssr: true, src: '@/plugins/icons.js'}
   ],
@@ -22,7 +19,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
     '@bazzite/nuxt-optimized-images',
-    [
+    /*[
       'nuxt-i18n', {
         locales: [
           {
@@ -36,12 +33,10 @@ module.exports = {
         ],
         lazy: true,
         langDir: 'lang/',
-        defaultLocale: 'en',
-        vueI18n: {
-          fallbackLocale: 'en'
-        }
+        strategy: 'prefix_except_default',
+        defaultLocale: 'en'
       }
-    ]
+    ]*/
   ],
   edImages: {
     optimizeImages: true

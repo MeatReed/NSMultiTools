@@ -18,7 +18,7 @@
                   News test 1
                 </v-card-title>
                 <v-card-subtitle>
-                  {{ $t('index.createdby') }} MeatReed
+                  Fait par MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"
@@ -42,7 +42,7 @@
                   News test 2
                 </v-card-title>
                 <v-card-subtitle>
-                  {{ $t('index.createdby') }} MeatReed
+                  Fait par MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"
@@ -66,7 +66,7 @@
                   News test 3
                 </v-card-title>
                 <v-card-subtitle>
-                  {{ $t('index.createdby') }} MeatReed
+                  Fait par MeatReed
                 </v-card-subtitle>
                 <v-img
                   height="300"

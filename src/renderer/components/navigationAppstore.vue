@@ -50,13 +50,13 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
-        <v-btn nuxt :to="localePath('/apps')" block color="grey">
-          {{ $t('appstore.applications') }}
+        <v-btn nuxt to="/apps" block color="grey">
+          Applications
         </v-btn>
       </div>
       <div class="pa-2">
         <v-btn v-on:click="closeWindow" block color="red">
-          {{ $t('appstore.close') }}
+          Fermer
         </v-btn>
       </div>
     </template>
@@ -79,7 +79,7 @@ export default {
       console.log(e)
     }
   },
-  data: ({ localePath, $i18n }) => ({
+  data: () => ({
     nameLimit: 60,
     packages: [],
     isLoading: false,
@@ -87,13 +87,13 @@ export default {
     search: null,
     drawer: null,
     items: [
-      { title: $i18n.t('appstore.home'), icon: 'mdi-home', to: localePath('/appstore') },
-      { title: $i18n.t('appstore.games'), icon: 'mdi-play', to: localePath('/appstore/games') },
-      { title: $i18n.t('appstore.emulators'), icon: 'mdi-gamepad-variant-outline', to: localePath('/appstore/emulators') },
-      { title: $i18n.t('appstore.tools'), icon: 'mdi-tools', to:  localePath('/appstore/tools')},
-      { title: $i18n.t('appstore.advanced'), icon: 'mdi-puzzle-outline', to: localePath('/appstore/advanced') },
-      { title: $i18n.t('appstore.themes'), icon: 'mdi-bookshelf', to: localePath('/appstore/themes') },
-      { title: $i18n.t('appstore.misc'), icon: 'mdi-cube-outline', to: localePath('/appstore/misc') }
+      { title: 'Accueil', icon: 'mdi-home', to:'/appstore' },
+      { title: 'Jeux', icon: 'mdi-play', to:'/appstore/games' },
+      { title: 'Emulateurs', icon: 'mdi-gamepad-variant-outline', to:'/appstore/emulators' },
+      { title: 'Outils', icon: 'mdi-tools', to:'/appstore/tools' },
+      { title: 'Avancés', icon: 'mdi-puzzle-outline', to:'/appstore/advanced' },
+      { title: 'Thèmes', icon: 'mdi-bookshelf', to:'/appstore/themes' },
+      { title: 'Misc', icon: 'mdi-cube-outline', to:'/appstore/misc' }
     ],
     right: null
   }),

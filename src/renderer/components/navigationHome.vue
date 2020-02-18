@@ -1,5 +1,5 @@
 <template>
-<header class="appstore-header">
+<header class="home-header">
   <v-app-bar
       app
       clipped-left
@@ -38,7 +38,7 @@
     </v-list>
     <template v-slot:append>
       <div class="pa-2">
-        <v-btn nuxt :to="localePath('/options')" block>
+        <v-btn nuxt to="/options" block>
           Options
         </v-btn>
       </div>
@@ -51,12 +51,12 @@
 import { remote } from 'electron'
 
 export default {
-  data: ({ localePath, $i18n }) => ({
+  data: () => ({
     drawer: null,
     items: [
-      { title: $i18n.t('links.home'), icon: 'mdi-home', to: localePath('/') },
-      { title: $i18n.t('links.applications'), icon: 'mdi-application', to: localePath('/apps') },
-      { title: $i18n.t('links.information'), icon: 'mdi-play', to: localePath('/info') }
+      { title: 'Accueil', icon: 'mdi-home', to:'/' },
+      { title: 'Applications', icon: 'mdi-application', to:'/apps' },
+      { title: 'Information', icon: 'mdi-play', to:'/info' }
     ]
   }),
   methods: {

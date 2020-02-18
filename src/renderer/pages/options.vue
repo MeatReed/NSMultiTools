@@ -15,14 +15,8 @@
           <v-col class="d-flex justify-center">
             <v-switch
               v-model="modelSwitch"
-              :label="$t('options.dark')"
+              label="Mode sombre"
             />
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col class="d-flex justify-center">
-              <v-btn v-if="$i18n.locale !== 'en'" nuxt :to="switchLocalePath('en')">{{ $t('options.english') }}</v-btn>
-              <v-btn v-if="$i18n.locale !== 'fr'" nuxt :to="switchLocalePath('fr')">{{ $t('options.french') }}</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -45,6 +39,11 @@ export default {
   data: ({ $vuetify }) => ({
     modelSwitch: $vuetify.theme.dark
   }),
+  computed: {
+    availableLocales () {
+      return this.$i18n.locales.filter(i => i.code !== this.$i18n.locale)
+    }
+  },
   watch: {
     modelSwitch() {
       if(this.$vuetify.theme.dark === true) {

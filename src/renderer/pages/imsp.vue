@@ -123,19 +123,19 @@ export default {
       this.messageSerial = status
       if(status === "safe") {
         this.valueAlert = true
-        this.messageSerial = this.$i18n.t('imsp.success')
+        this.messageSerial = 'Votre Nintendo Switch n\'est pas patchée, vous pouvez correctement la hacker !'
         this.typeSerial = 'success'
       } else if(status === "warning") {
         this.valueAlert = true
-        this.messageSerial = this.$i18n.t('imsp.warning')
+        this.messageSerial = 'Il est impossible de déterminer si votre Nintendo Switch est hackable !'
         this.typeSerial = 'warning'
       } else if(status === "patched") {
         this.valueAlert = true
-        this.messageSerial = this.$i18n.t('imsp.patched')
+        this.messageSerial = 'Votre Nintendo Switch est patchée, vous ne pouvez pas la hacker !'
         this.typeSerial = 'error'
       } else {
         this.valueAlert = true
-        this.messageSerial = this.$i18n.t('imsp.incorrect')
+        this.messageSerial = 'Le numéro de série que vous avez saisi est incorrect !'
         this.typeSerial = 'error'
       }
     },

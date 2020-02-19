@@ -1,8 +1,0 @@
-.nuxt
-dist
-build/*
-!build/icons
-node_modules
-TegraRcmSmash/*
-apx_driver/*
-ssnc/*

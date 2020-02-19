@@ -59,7 +59,7 @@
           </v-col>
         </v-row>
         <v-dialog
-          v-model="dialog"
+          v-model="dialogDrive"
           max-width="290"
         >
           <v-card>
@@ -74,7 +74,7 @@
 
               <v-btn
                 text
-                @click="dialog = false"
+                @click="dialogDrive = false"
               >
                 Je n'accepte pas
               </v-btn>
@@ -96,10 +96,10 @@
 <script>
 import { remote } from 'electron'
 import usb from 'usb'
-import fs from 'fs'
 import { exec, spawn } from 'child_process'
 import appHeader from '@/components/navigationHome'
 import path from 'path'
+import fs from 'fs'
 
 let usbVerifyLaunch = usb.getDeviceList().find(function(d) {
   return d.deviceDescriptor.idVendor === 0x0955
@@ -128,7 +128,7 @@ export default {
     files: [],
     messageAlert: messageAlert,
     typeAlert: typeAlert,
-    dialog: false,
+    dialogDrive: false,
     areaConsole: null
   }),
   mounted () {
@@ -159,7 +159,7 @@ export default {
       }
     },
     async installDriver(payload) {
-      this.dialog = false
+      this.dialogDrive = false
       exec(`${userData}/apx_driver/InstallDriver.exe`)
     },
     async launchPayload(payload) {
@@ -181,7 +181,7 @@ export default {
         if(code === 4294967290) {
           this.typeAlert = "error"
           this.messageAlert = "Les drivers ne sont pas installés !"
-          this.dialog = true
+          this.dialogDrive = true
         } else {
           this.typeAlert = "success"
           this.messageAlert = "Payload injecté !"

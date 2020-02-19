@@ -1,10 +1,8 @@
 /* globals INCLUDE_RESOURCES_PATH */
 import { app } from 'electron'
-import download from 'url-download'
-import fs from 'fs'
-import unzipper from 'unzipper'
-import path from 'path'
 import db from 'electron-db'
+import path from 'path'
+import fs from 'fs'
 
 let userData = path.join(process.env.APPDATA, 'nsmultitools');
 
@@ -12,9 +10,7 @@ if (!fs.existsSync(userData)){
   fs.mkdirSync(userData);
 }
 
-if (fs.existsSync(path.join(userData, 'config.json'))) {
-  console.log('Does exist')
-} else {
+if (!fs.existsSync(path.join(userData, 'config.json'))) {
   let obj = new Object();
 
   obj.dark = true;
@@ -28,36 +24,6 @@ if (fs.existsSync(path.join(userData, 'config.json'))) {
     })
   })
 }
-
-if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))){
-  fs.mkdirSync(path.join(userData, 'TegraRcmSmash'));
-  
-  download('https://cdn.discordapp.com/attachments/540906974766956554/674703383445372949/TegraRcmSmash.exe', path.join(userData, 'TegraRcmSmash'))
-  .on('close', function () {
-    console.log('Download TegraRCMSmash');
-  });
-}
-
-if (!fs.existsSync(path.join(userData, 'apx_driver'))){
-  fs.mkdirSync(path.join(userData, 'apx_driver'));
-  
-  download('https://cdn.discordapp.com/attachments/558777274976174083/674745878648586251/apx_driver.zip', path.join(userData, 'apx_driver'))
-  .on('close',async function () {
-    console.log('Download apx_driver.zip');
-    await fs.createReadStream(path.join(userData, 'apx_driver' , 'apx_driver.zip'))
-      .pipe(unzipper.Extract({ path: path.join(userData) }));
-    });
-}
-
-if (!fs.existsSync(path.join(userData, 'ssnc'))){
-  fs.mkdirSync(path.join(userData, 'ssnc'));
-  
-  download('https://cdn.discordapp.com/attachments/540906974766956554/676825630628642818/serials.json', path.join(userData, 'ssnc'))
-  .on('close',async function () {
-    console.log('Download ssnc.json');
-  });
-}
-
 
 /**
  * Set `__resources` path to resources files in renderer process

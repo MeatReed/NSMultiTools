@@ -40,14 +40,14 @@
         </v-row>
         <v-row>
           <v-col>
-            <v-btn @click.stop="dialog = true">Où trouver son numéro de série ?</v-btn>
+            <v-btn @click.stop="dialogSN = true">Où trouver son numéro de série ?</v-btn>
           </v-col>
           <v-col>
             <v-btn nuxt to="/inject">Injecter un payload sur sa Nintendo Switch</v-btn>
           </v-col>
         </v-row>
         <v-dialog
-          v-model="dialog"
+          v-model="dialogSN"
         >
           <v-card>
             <v-card-title class="headline">Où trouver son numéro de série ?</v-card-title>
@@ -66,7 +66,7 @@
 
               <v-btn
                 text
-                @click="dialog = false"
+                @click="dialogSN = false"
               >
                 Fermer
               </v-btn>
@@ -85,6 +85,7 @@ import { exec, spawn } from 'child_process'
 import appHeader from '@/components/navigationHome'
 import fs from 'fs'
 import path from 'path'
+
 let userData = path.join(process.env.APPDATA, 'nsmultitools');
 
 export default {
@@ -96,11 +97,8 @@ export default {
     messageSerial: null,
     typeSerial: null,
     valueAlert: false,
-    dialog: false
+    dialogSN: false
   }),
-  mounted () {
-
-  },
   methods: {
     inputUpdate() {
       if(this.serialInput.length === 0) {
@@ -164,13 +162,11 @@ export default {
             return this.send_data(serial_input, first_part, second_part, category_serials_array[1][1]);
           } else {
             return this.send_data(serial_input, first_part, second_part, category_serials_array[2][1]);
-          };
-        };
-
+          }
+        }
       } else {
         return this.send_data(serial_input, null, null);
       }
-      
     }
   }
 }

@@ -226,8 +226,8 @@ export default {
         toolPackages: toolPackages,
         advancedPackages: advancedPackages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {

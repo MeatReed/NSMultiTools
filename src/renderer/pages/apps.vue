@@ -92,6 +92,16 @@ export default {
         name: "IMSP",
         img: require('../assets/imsp.png'),
         to: { name: '/imsp' }
+      },
+      {
+        name: "SX OS LICENSE",
+        img: require('../assets/sxos.png'),
+        to: { name: '/sxos' }
+      },
+      {
+        name: "Tinfoil",
+        img: require('../assets/tinfoil.png'),
+        to: { name: '/tinfoil' }
       }
     ]
   }),

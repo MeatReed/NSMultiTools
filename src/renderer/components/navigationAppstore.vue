@@ -35,7 +35,6 @@
       dense
       nav
     >
-
       <v-list-item
         v-for="item in items"
         :key="item.title"
@@ -108,8 +107,8 @@ export default {
       return {
         allPackages: data.packages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   data: () => ({
@@ -128,7 +127,6 @@ export default {
       { title: 'Thèmes', icon: 'mdi-bookshelf', to:'/appstore/themes' },
       { title: 'Misc', icon: 'mdi-cube-outline', to:'/appstore/misc' }
     ],
-    right: null,
     modalTitle: "",
     modalDesc: "",
     modalCategory: "",

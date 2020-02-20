@@ -103,8 +103,8 @@ export default {
       return {
         gamePackages: gamePackages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {

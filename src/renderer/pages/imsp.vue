@@ -2,12 +2,11 @@
   <div>
     <app-header />
     <v-content>
-      <p class="font-weight-black headline text-center">
+      <div class=" font-weight-bold headline text-center">
         Is My Switch Patched?
-      </p>
+      </div>
       <v-container
           class="fill-height lighten-5"
-          
           fluid
         >
         <v-row

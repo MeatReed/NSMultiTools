@@ -103,8 +103,8 @@ export default {
       return {
         toolsPackages: toolsPackages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {

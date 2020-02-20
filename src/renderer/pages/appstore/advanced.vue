@@ -103,8 +103,8 @@ export default {
       return {
         advancedPackages: advancedPackages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {

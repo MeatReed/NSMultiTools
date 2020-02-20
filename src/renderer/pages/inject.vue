@@ -2,9 +2,9 @@
   <div>
     <app-header />
     <v-content>
-      <p class="font-weight-black headline text-center">
+      <div class="font-weight-bold headline text-center">
         Inject Payload
-      </p>
+      </div>
       <v-container
           class="fill-height"
           fluid
@@ -30,7 +30,6 @@
                     <v-chip
                       small
                       label
-                      color="primary"
                     >
                       {{ text }}
                     </v-chip>
@@ -158,11 +157,11 @@ export default {
         this.messageAlert = "La Nintendo Switch n'est pas connectée à l'ordinateur ou en mode RCM !"
       }
     },
-    async installDriver(payload) {
+    async installDriver() {
       this.dialogDrive = false
       exec(`${userData}/apx_driver/InstallDriver.exe`)
     },
-    async launchPayload(payload) {
+    async launchPayload() {
       if(usbConnect === false) {
         this.typeAlert = "error"
         this.messageAlert = "La Nintendo Switch n'est pas connectée à l'ordinateur ou en mode RCM !"

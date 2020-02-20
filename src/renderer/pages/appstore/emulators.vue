@@ -103,8 +103,8 @@ export default {
       return {
         emuPackages: emuPackages
       }
-    } catch (e) {
-      console.log(e)
+    } catch (err) {
+      console.log(err)
     }
   },
   methods: {

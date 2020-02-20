@@ -2,9 +2,9 @@
   <div>
     <app-header />
     <v-content>
-      <p class="font-weight-black headline text-center">
+      <div class="font-weight-bold headline text-center">
         SysDVR
-      </p>
+      </div>
       <v-container
           class="fill-height"
           fluid

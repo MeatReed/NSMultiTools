@@ -62,6 +62,7 @@ import download from 'url-download'
 import fs from 'fs'
 import unzipper from 'unzipper'
 import path from 'path'
+import https from 'https'
 
 let userData = path.join(process.env.APPDATA, 'nsmultitools');
 
@@ -104,12 +105,12 @@ export default {
     }
   },
   methods: {
-    installFiles() {
+    async installFiles() {
       this.dialog = false
       if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
         fs.mkdirSync(path.join(userData, 'TegraRcmSmash'));
         
-        download('https://cdn.discordapp.com/attachments/540906974766956554/674703383445372949/TegraRcmSmash.exe', path.join(userData, 'TegraRcmSmash'))
+        download('https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/TegraRcmSmash/TegraRcmSmash.exe', path.join(userData, 'TegraRcmSmash'))
         .on('close', function () {
           console.log('Download TegraRCMSmash');
         });
@@ -118,7 +119,7 @@ export default {
       if (!fs.existsSync(path.join(userData, 'apx_driver'))) {
         fs.mkdirSync(path.join(userData, 'apx_driver'));
         
-        download('https://cdn.discordapp.com/attachments/558777274976174083/674745878648586251/apx_driver.zip', path.join(userData, 'apx_driver'))
+        download('https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/apx_driver/apx_driver.zip', path.join(userData, 'apx_driver'))
         .on('close',async function () {
           console.log('Download apx_driver.zip');
           await fs.createReadStream(path.join(userData, 'apx_driver' , 'apx_driver.zip'))
@@ -128,10 +129,13 @@ export default {
 
       if (!fs.existsSync(path.join(userData, 'ssnc'))) {
         fs.mkdirSync(path.join(userData, 'ssnc'));
+
+        var file = fs.createWriteStream(path.join(userData, 'ssnc', 'serials.json'));
+
+        var request = https.get('https://raw.githubusercontent.com/MeatReed/NSMultiTools/additionalFiles/ssnc/serials.json', function(response) {
+          response.on("finish", function() {
         
-        download('https://cdn.discordapp.com/attachments/540906974766956554/676825630628642818/serials.json', path.join(userData, 'ssnc'))
-        .on('close',async function () {
-          console.log('Download ssnc.json');
+          }).pipe(file);
         });
       }
     }

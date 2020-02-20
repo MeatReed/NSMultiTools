@@ -7,17 +7,20 @@
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">Switch Appstore</span>
       <v-autocomplete
-        v-model="model"
+        v-model="select"
         :items="itemsPackage"
         :loading="isLoading"
         :search-input.sync="search"
-        color="white"
-        hide-no-data
+        item-text="name"
+        flat
+        solo-inverted
+        hide-details
+        prepend-inner-icon="mdi-magnify"
+        class="hidden-sm-and-down"
         item-value="API"
         placeholder="Rechercher"
-        prepend-icon="mdi-database-search"
-        return-object="true"
-      ></v-autocomplete>
+        return-object
+      />
       <v-spacer />
       <v-btn v-on:click="closeWindow" icon color="red">
         <v-icon>mdi-close</v-icon>
@@ -61,6 +64,36 @@
       </div>
     </template>
   </v-navigation-drawer>
+  <v-dialog
+      v-model="dialog"
+      max-width="550"
+    >
+      <v-card>
+        <v-img
+          class="white--text align-end"
+          height="200px"
+          :src="getIcon(modalTitle)"
+        >
+          <v-card-title>{{ modalTitle }}</v-card-title>
+        </v-img>
+
+        <v-card-actions>
+          <v-btn text v-on:click="download(modalTitle)">Télécharger</v-btn>
+          <v-btn text v-on:click="openLink(modalSource)">Source</v-btn>
+        </v-card-actions>
+
+        <v-card-subtitle class="pb-0"><strong>Catégorie : </strong>{{ modalCategory }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>Version : </strong>{{ modalVersion }}</v-card-subtitle>
+        <v-card-subtitle class="pb-0"><strong>Mise à jour le : </strong>{{ modalUpdated }}</v-card-subtitle>
+        <br />
+        <v-card-text class="text--primary">
+          <div class="author"><strong>Auteur : </strong>{{ modalAuthor }}</div>
+          <div v-html="getFormatedDesc(modalDesc)"></div>
+          <div class="changelog"><strong>Changelog : </strong></div>
+          <div v-html="getFormatedDesc(modalChangelog)"></div>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </header>
 </template>
 
@@ -83,7 +116,7 @@ export default {
     nameLimit: 60,
     packages: [],
     isLoading: false,
-    model: null,
+    select: null,
     search: null,
     drawer: null,
     items: [
@@ -95,34 +128,57 @@ export default {
       { title: 'Thèmes', icon: 'mdi-bookshelf', to:'/appstore/themes' },
       { title: 'Misc', icon: 'mdi-cube-outline', to:'/appstore/misc' }
     ],
-    right: null
+    right: null,
+    modalTitle: "",
+    modalDesc: "",
+    modalCategory: "",
+    modalAuthor: "",
+    modalChangelog: "",
+    modalVersion: "",
+    modalUpdated: "",
+    modalSource: "",
+    dialog: false,
   }),
   computed: {
-      fields() {
-        if (!this.model) return []
+    itemsPackage() {
+      return this.packages.map(entry => {
+        const Name = entry.name.length > this.nameLimit
+          ? entry.name.slice(0, this.nameLimit) + '...'
+          : entry.name
 
-        return Object.keys(this.model).map(key => {
-          console.log(this.model)
-          return {
-            key,
-            value: this.model[key] || 'n/a',
-          }
-        })
-      },
-      itemsPackage() {
-        return this.packages.map(entry => {
-          const Name = entry.name.length > this.nameLimit
-            ? entry.name.slice(0, this.nameLimit) + '...'
-            : entry.name
-
-          return Object.assign({}, entry, { Name })
-        })
-      },
+        return Object.assign({}, entry, { Name })
+      })
+    }
   },
   watch: {
+    select(val) {
+      if (!val) {
+        this.modalTitle = val.name
+        this.modalDesc = val.details.replace(/\n/g, "<br />")
+        this.modalCategory = val.category
+        this.modalAuthor = val.author
+        this.modalChangelog = val.changelog
+        this.modalVersion = val.version
+        this.modalUpdated = val.updated
+        this.modalSource = val.url
+        this.dialog = false
+      }
+
+      this.modalTitle = val.name
+      this.modalDesc = val.details.replace(/\n/g, "<br />")
+      this.modalCategory = val.category
+      this.modalAuthor = val.author
+      this.modalChangelog = val.changelog
+      this.modalVersion = val.version
+      this.modalUpdated = val.updated
+      this.modalSource = val.url
+      this.dialog = true
+    },
     search (val) {
 
         if (this.isLoading) return
+
+        this.isLoading = true
 
         this.isLoading = true
         fetch('https://www.switchbru.com/appstore/repo.json')
@@ -138,6 +194,18 @@ export default {
       }
   },
   methods: {
+    getFormatedDesc(e) {
+        return e = e.replace(/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim, '<a href="$&">$&</a>'), e = e.replace(/^\s*\\n|\\n\s*$/g, ""), e = e.replace(/\\n/g, "<br/>"), e = e.replace(/(<script|<iframe).*?(\/script>|\/iframe>)/g, "")
+    },
+    openLink(link) {
+        remote.shell.openExternal(link);
+    },
+    download(name) {
+      remote.shell.openExternal(`https://switchbru.com/appstore/zips/${name}.zip`);
+    },
+    getIcon: function(name) {
+      return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
+    },
     closeWindow: function(event) {
       var window = remote.getCurrentWindow()
       window.close();

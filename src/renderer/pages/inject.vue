@@ -58,7 +58,7 @@
           </v-col>
         </v-row>
         <v-dialog
-          v-model="dialogDrive"
+          v-model="dialogDriver"
           max-width="290"
         >
           <v-card>
@@ -73,7 +73,7 @@
 
               <v-btn
                 text
-                @click="dialogDrive = false"
+                @click="dialogDriver = false"
               >
                 Je n'accepte pas
               </v-btn>
@@ -127,7 +127,7 @@ export default {
     files: [],
     messageAlert: messageAlert,
     typeAlert: typeAlert,
-    dialogDrive: false,
+    dialogDriver: false,
     areaConsole: null
   }),
   mounted () {
@@ -158,7 +158,7 @@ export default {
       }
     },
     async installDriver() {
-      this.dialogDrive = false
+      this.dialogDriver = false
       exec(`${userData}/apx_driver/InstallDriver.exe`)
     },
     async launchPayload() {
@@ -180,7 +180,7 @@ export default {
         if(code === 4294967290) {
           this.typeAlert = "error"
           this.messageAlert = "Les drivers ne sont pas installés !"
-          this.dialogDrive = true
+          this.dialogDriver = true
         } else {
           this.typeAlert = "success"
           this.messageAlert = "Payload injecté !"

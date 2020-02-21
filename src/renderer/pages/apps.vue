@@ -8,8 +8,28 @@
             <v-hover
               v-slot:default="{ hover }"
               open-delay="200"
+              aria-disabled
             >
+              <v-tooltip bottom v-if="navigator === 'offline' && item.online === true">
+                <template v-slot:activator="{ on }">
+                  <v-card
+                    v-on="on"
+                    class="mx-auto"
+                    max-width="344"
+                    outlined
+                  >
+                    <v-card-title>
+                      {{ item.name }}
+                    </v-card-title>
+                    <v-img class="white--text align-end"
+                      :src="item.img"
+                    />
+                  </v-card>
+                  </template>
+                <span>Cette application a besoin d'une connexion internet pour fonctionner.</span>
+              </v-tooltip>
               <v-card
+                v-else
                 class="mx-auto"
                 :elevation="hover ? 16 : 2"
                 max-width="344"
@@ -56,7 +76,7 @@
 </template>
 
 <script>
-import { remote } from 'electron'
+import { remote, ipcRenderer } from 'electron'
 import appHeader from '@/components/navigationHome'
 import download from 'url-download'
 import fs from 'fs'
@@ -72,36 +92,43 @@ export default {
   },
   data: () => ({
     dialog: false,
+    navigator: navigator.onLine ? 'online' : 'offline',
     menu: [
       {
         name: "Switch Appstore",
         img: require('../assets/appstorenx.png'),
-        to: { name: '/appstore' }
+        to: { name: '/appstore' },
+        online: true
       },
       {
         name: "Inject Payload",
         img: require('../assets/smashFistIcon.png'),
-        to: { name: '/inject' }
+        to: { name: '/inject' },
+        online: false
       },
       {
         name: "SysDVR",
         img: require('../assets/sysdvr.png'),
-        to: { name: '/sysdvr' }
+        to: { name: '/sysdvr' },
+        online: false
       },
       {
         name: "IMSP",
         img: require('../assets/imsp.png'),
-        to: { name: '/imsp' }
+        to: { name: '/imsp' },
+        online: false
       },
       {
         name: "SX OS LICENSE",
         img: require('../assets/sxos.png'),
-        to: { name: '/sxos' }
+        to: { name: '/sxos' },
+        online: true
       },
       {
         name: "Tinfoil",
         img: require('../assets/tinfoil.png'),
-        to: { name: '/tinfoil' }
+        to: { name: '/tinfoil' },
+        online: true
       }
     ]
   }),

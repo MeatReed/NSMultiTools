@@ -13,6 +13,18 @@
   </v-app>
 </template>
 
+<script>
+import db from 'electron-db'
+
+export default {
+  beforeCreate() {
+    db.getField('config', 'dark', (succ, data) => {
+      this.$vuetify.theme.dark = data[0]
+    })
+  }
+}
+</script>
+
 <style>
 ::-webkit-scrollbar {
     display: none;

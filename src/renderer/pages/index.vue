@@ -85,17 +85,10 @@
 <script>
 import { remote } from 'electron'
 import appHeader from '@/components/navigationHome'
-import path from 'path'
-import db from 'electron-db'
 
 export default {
   components: {
     appHeader
-  },
-  beforeCreate() {
-    db.getField('config', 'dark', (succ, data) => {
-      this.$vuetify.theme.dark = data[0]
-    })
   }
 }
 </script>

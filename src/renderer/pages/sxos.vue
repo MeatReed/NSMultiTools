@@ -98,7 +98,7 @@ export default {
       }
 
       if(file.name !== "license-request.dat") {
-        this.messageAlert = "Le fichier que vous avez mis ne correspond pont pas au license-request.dat !"
+        this.messageAlert = "Le fichier que vous avez mis ne correspond pas au license-request.dat !"
         this.typeAlert = "error"
         this.valueAlert = true
         this.showRedeemCode = false

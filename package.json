@@ -1,6 +1,6 @@
 {
   "name": "nsmultitools",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Interface graphique sous Windows permettant de facilité la vie aux hackeurs Nintendo Switch :D 🍭",
   "main": "./dist/main/index.js",
   "scripts": {

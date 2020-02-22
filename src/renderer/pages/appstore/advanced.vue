@@ -46,6 +46,15 @@
           </v-col>
         </v-row>
       </v-container>
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :timeout="snackbarTimeout"
+      top
+      right
+    >
+      {{ snackbarMessage }}
+    </v-snackbar>
     </v-content>
     <v-dialog
       v-model="dialog"
@@ -83,6 +92,8 @@
 <script>
 import { remote } from 'electron'
 import appHeader from '@/components/navigationAppstore'
+import downloadUrl from 'url-download'
+import path from 'path'
 
 export default {
   components: {
@@ -126,8 +137,27 @@ export default {
       this.modalSource = select.url
       this.dialog = true
     },
-    download(name) {
-      remote.shell.openExternal(`https://switchbru.com/appstore/zips/${name}.zip`);
+    async download(name) {
+      let self = this
+      var installPath = await remote.dialog.showSaveDialogSync({
+        title: `Installation ${name}.zip`,
+        defaultPath: `${name}.zip`
+      });
+      var urlParse = path.parse(installPath);
+      this.snackbarColor = "success"
+      this.snackbarMessage = `Installation en cours de ${name}.zip`
+      this.snackbarTimeout = 0
+      this.snackbar = true
+      downloadUrl(`https://switchbru.com/appstore/zips/${name}.zip`, urlParse.dir)
+      .on('close', function () {
+        self.snackbar = false
+        self.snackbarColor = "success"
+        self.snackbarMessage = `${name}.zip a été installé avec succès !`
+        self.snackbarTimeout = 6000
+        setTimeout(function(){
+          self.snackbar = true
+        }, 1000);
+      });
     },
     getIcon: function(name) {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
@@ -183,7 +213,11 @@ export default {
 				json_id: "_misc",
 				icon: "fa-cubes"
 			}
-    ]
+    ],
+    snackbar: false,
+    snackbarColor: "",
+    snackbarMessage: "",
+    snackbarTimeout: 6000
   })
 }
 </script>

@@ -20,7 +20,6 @@
       dense
       nav
     >
-
       <v-list-item
         v-for="item in items"
         :key="item.title"

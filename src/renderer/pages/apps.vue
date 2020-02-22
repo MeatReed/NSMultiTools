@@ -106,12 +106,12 @@ export default {
         to: { name: '/inject' },
         online: false
       },
-      {
+      /*{
         name: "SysDVR",
         img: require('../assets/sysdvr.png'),
         to: { name: '/sysdvr' },
         online: false
-      },
+      },*/
       {
         name: "IMSP",
         img: require('../assets/imsp.png'),
@@ -124,12 +124,12 @@ export default {
         to: { name: '/sxos' },
         online: true
       },
-      {
+      /*{
         name: "Tinfoil",
         img: require('../assets/tinfoil.png'),
         to: { name: '/tinfoil' },
         online: true
-      }
+      }*/
     ]
   }),
   created() {
@@ -144,6 +144,10 @@ export default {
   methods: {
     async installFiles() {
       this.dialog = false
+      if (!fs.existsSync(userData)){
+        fs.mkdirSync(userData);
+      }
+      
       if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
         fs.mkdirSync(path.join(userData, 'TegraRcmSmash'));
         

@@ -4,7 +4,9 @@
 
 ## Previews
 
-![N|Solid](https://i.imgur.com/gASkXUM.png)
+![N|Solid](https://i.imgur.com/XHCLkio.png)
+![N|Solid](https://i.imgur.com/vwCFIsC.png)
+![N|Solid](https://i.imgur.com/EkwsCqM.png)
 
 ### Credits
 

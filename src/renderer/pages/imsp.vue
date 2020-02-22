@@ -22,6 +22,7 @@
               <v-col>
                 <v-text-field
                   v-model="serialInput"
+                  class="inputSerial"
                   label="Numéro de série"
                   placeholder="Exemple : XAJ10011683536 ou XAJ1 0011683536"
                   @input="inputUpdate"
@@ -172,6 +173,12 @@ export default {
 </script>
 
 <style scoped>
+.inputSerial {
+  width: 500px;
+  margin: 0px auto;
+  display: block;
+}
+
 .col {
   text-align: center;
 }

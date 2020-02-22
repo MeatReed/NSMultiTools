@@ -11,7 +11,7 @@ module.exports = {
       { charset: 'utf-8' }
     ]
   },
-  loading: true,
+  loading: 'components/loading.vue',
   plugins: [
     {ssr: true, src: '@/plugins/icons.js'}
   ],

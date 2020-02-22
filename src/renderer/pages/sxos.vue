@@ -205,8 +205,7 @@ export default {
         
         var path = remote.dialog.showSaveDialogSync({
           title: "Sauvegarde license.dat",
-          defaultPath: "license.dat",
-          nameFieldLabel: "license.dat"
+          defaultPath: "license.dat"
         });
         fs.writeFileSync(path, new Buffer.from(license_file));
         remote.shell.showItemInFolder(path);
@@ -222,9 +221,6 @@ export default {
         self.valueAlert = true
         self.btnRetrieveLoading = false
       });
-    },
-    openURL(url) {
-      remote.shell.openExternal(url)
     }
   }
 }
@@ -233,8 +229,8 @@ export default {
 <style scoped>
 .sxCode {
   width: 300px;
-  margin:0px auto;
-  display:block;
+  margin: 0px auto;
+  display: block;
 }
 
 .col {

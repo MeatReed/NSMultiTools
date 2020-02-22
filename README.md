@@ -7,6 +7,7 @@
 ![N|Solid](https://i.imgur.com/XHCLkio.png)
 ![N|Solid](https://i.imgur.com/vwCFIsC.png)
 ![N|Solid](https://i.imgur.com/EkwsCqM.png)
+![N|Solid](https://i.imgur.com/Gsbhn9Q.png)
 
 ### Credits
 

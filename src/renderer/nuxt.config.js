@@ -6,12 +6,12 @@
 module.exports = {
   mode: 'spa',
   head: {
-    title: 'nsmultitools',
+    title: 'NSMultiTools',
     meta: [
       { charset: 'utf-8' }
     ]
   },
-  loading: 'components/loading.vue',
+  loading: '@/components/loading.vue',
   plugins: [
     {ssr: true, src: '@/plugins/icons.js'}
   ],
@@ -19,6 +19,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
     '@bazzite/nuxt-optimized-images',
+    '@nuxtjs/markdownit'
     /*[
       'nuxt-i18n', {
         locales: [
@@ -40,5 +41,8 @@ module.exports = {
   ],
   edImages: {
     optimizeImages: true
+  },
+  markdownit: {
+    injected: true
   }
 };

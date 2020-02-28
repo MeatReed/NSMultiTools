@@ -120,8 +120,6 @@ export default {
       }).catch(error => {
         console.log(error)
       });
-      return 
-      
     } catch (err) {
       console.log(err)
     }

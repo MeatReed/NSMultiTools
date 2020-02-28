@@ -55,7 +55,8 @@ export default {
     items: [
       { title: 'Accueil', icon: 'mdi-home', to:'/' },
       { title: 'Applications', icon: 'mdi-application', to:'/apps' },
-      { title: 'Information', icon: 'mdi-play', to:'/info' }
+      { title: 'Information', icon: 'mdi-play', to:'/info' },
+      { title: 'Changelog', icon: 'mdi-post', to:'/changelog' }
     ]
   }),
   methods: {

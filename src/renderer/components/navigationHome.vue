@@ -1,6 +1,6 @@
 <template>
-<header class="home-header">
-  <v-app-bar
+  <header class="home-header">
+    <v-app-bar
       app
       clipped-left
     >
@@ -12,10 +12,10 @@
       </v-btn>
     </v-app-bar>
     <v-navigation-drawer
-    v-model="drawer"
-    app
-    clipped
-  >
+      v-model="drawer"
+      app
+      clipped
+    >
     <v-list
       dense
       nav

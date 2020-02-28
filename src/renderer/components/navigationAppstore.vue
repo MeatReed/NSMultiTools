@@ -1,78 +1,78 @@
 <template>
-<header class="appstore-header">
-  <v-app-bar
+  <header class="appstore-header">
+    <v-app-bar
       app
       clipped-left
     >
-      <v-app-bar-nav-icon @click="drawer = !drawer" />
-      <span class="title ml-3 mr-5">Switch Appstore</span>
-      <v-autocomplete
-        v-model="select"
-        :items="itemsPackage"
-        :loading="isLoading"
-        :search-input.sync="search"
-        item-text="name"
-        flat
-        solo-inverted
-        hide-details
-        prepend-inner-icon="mdi-magnify"
-        class="hidden-sm-and-down"
-        item-value="API"
-        placeholder="Rechercher"
-        return-object
-      />
-      <v-spacer />
-      <v-btn v-on:click="closeWindow" icon color="red">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-app-bar>
-    <v-navigation-drawer
-    v-model="drawer"
-    app
-    clipped
-  >
-    <v-list
-      dense
-      nav
-    >
-      <v-list-item
-        v-for="item in items"
-        :key="item.title"
-        nuxt
-        :to="item.to"
+        <v-app-bar-nav-icon @click="drawer = !drawer" />
+        <span class="title ml-3 mr-5">Switch Appstore</span>
+        <v-autocomplete
+          v-model="select"
+          :items="itemsPackage"
+          :loading="isLoading"
+          :search-input.sync="search"
+          item-text="name"
+          flat
+          solo-inverted
+          hide-details
+          prepend-inner-icon="mdi-magnify"
+          class="hidden-sm-and-down"
+          item-value="API"
+          placeholder="Rechercher"
+          return-object
+        />
+        <v-spacer />
+        <v-btn v-on:click="closeWindow" icon color="red">
+          <v-icon>mdi-close</v-icon>
+        </v-btn>
+      </v-app-bar>
+      <v-navigation-drawer
+        v-model="drawer"
+        app
+        clipped
       >
-        <v-list-item-icon>
-          <v-icon>{{ item.icon }}</v-icon>
-        </v-list-item-icon>
+      <v-list
+        dense
+        nav
+      >
+        <v-list-item
+          v-for="item in items"
+          :key="item.title"
+          nuxt
+          :to="item.to"
+        >
+          <v-list-item-icon>
+            <v-icon>{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-        <v-list-item-content>
-          <v-list-item-title>{{ item.title }}</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
-    <template v-slot:append>
-      <div class="pa-2">
-        <v-btn nuxt to="/apps" block color="grey">
-          Applications
-        </v-btn>
-      </div>
-      <div class="pa-2">
-        <v-btn v-on:click="closeWindow" block color="red">
-          Fermer
-        </v-btn>
-      </div>
-    </template>
-  </v-navigation-drawer>
-  <v-snackbar
-    v-model="snackbar"
-    :color="snackbarColor"
-    :timeout="snackbarTimeout"
-    top
-    right
-  >
-    {{ snackbarMessage }}
-  </v-snackbar>
-  <v-dialog
+          <v-list-item-content>
+            <v-list-item-title>{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+      <template v-slot:append>
+        <div class="pa-2">
+          <v-btn nuxt to="/apps" block color="grey">
+            Applications
+          </v-btn>
+        </div>
+        <div class="pa-2">
+          <v-btn v-on:click="closeWindow" block color="red">
+            Fermer
+          </v-btn>
+        </div>
+      </template>
+    </v-navigation-drawer>
+    <v-snackbar
+      v-model="snackbar"
+      :color="snackbarColor"
+      :timeout="snackbarTimeout"
+      top
+      right
+    >
+      {{ snackbarMessage }}
+    </v-snackbar>
+    <v-dialog
       v-model="dialog"
       max-width="550"
     >

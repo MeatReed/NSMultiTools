@@ -72,26 +72,26 @@ export default {
 </script>
 
 <style scoped>
-    .title {
-        color: #364758;
-        font-size: 1.5em;
-        letter-spacing: .25px;
-        margin-top: 10px;
-    }
-    .items {
-        margin-top: 8px;
-    }
-    .item {
-        display: flex;
-        margin-bottom: 6px;
-    }
-    .item .name {
-        color: #6a6a6a;
-        margin-right: 6px;
-    }
+.title {
+    color: #364758;
+    font-size: 1.5em;
+    letter-spacing: .25px;
+    margin-top: 10px;
+}
+.items {
+    margin-top: 8px;
+}
+.item {
+    display: flex;
+    margin-bottom: 6px;
+}
+.item .name {
+    color: #6a6a6a;
+    margin-right: 6px;
+}
 
-    .item .value {
-        color: #364758;
-        font-weight: bold;
-    }
+.item .value {
+    color: #364758;
+    font-weight: bold;
+}
 </style>

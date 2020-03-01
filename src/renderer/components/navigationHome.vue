@@ -2,7 +2,6 @@
   <header class="home-header">
     <v-app-bar
       app
-      clipped-left
     >
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">NSMultiTools</span>
@@ -14,7 +13,6 @@
     <v-navigation-drawer
       v-model="drawer"
       app
-      clipped
     >
     <v-list
       dense
@@ -43,15 +41,20 @@
       </div>
     </template>
   </v-navigation-drawer>
+  <navigation-account />
   </header>
 </template>
 
 <script>
 import { remote } from 'electron'
+import navigationAccount from '@/components/navigationAccount'
 
 export default {
+  components: {
+    navigationAccount
+  },
   data: () => ({
-    drawer: null,
+    drawer: false,
     items: [
       { title: 'Accueil', icon: 'mdi-home', to:'/' },
       { title: 'Applications', icon: 'mdi-application', to:'/apps' },

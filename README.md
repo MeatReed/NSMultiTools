@@ -1,5 +1,7 @@
 # NSMultiTools
 
+![N|Solid](https://i.ibb.co/gzP9pgy/win-icon.png)
+
 > Interface graphique sous Windows permettant de facilité la vie aux hackeurs Nintendo Switch :D 🍭
 
 ## Previews

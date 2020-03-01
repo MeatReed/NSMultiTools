@@ -34,6 +34,10 @@ body {
   font-family: Helvetica, sans-serif;
 }
 
+.v-content {
+  padding: 56px 29px 36px 0px !important;
+}
+
 p {
   color: #FFFFFF;
 }

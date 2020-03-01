@@ -6,14 +6,17 @@
   "scripts": {
     "dev": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=development node .electron-nuxt/index.js",
     "build": "node .electron-nuxt/check-engines.js && cross-env-shell NODE_ENV=production node .electron-nuxt/index.js",
-    "test": "",
     "preinstall": "node .electron-nuxt/check-engines.js",
     "postinstall": "electron-builder install-app-deps "
   },
   "keywords": [],
   "author": "MeatReed",
   "license": "MIT",
-  "homepage": "https://github.com/michalzaq12/electron-nuxt/blob/master/README.md",
+  "homepage": "https://github.com/MeatReed/NSMultiTools/blob/master/README.md",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/MeatReed/NSMultiTools.git"
+  },
   "engines": {
     "node": ">=12.8.1"
   },
@@ -53,6 +56,7 @@
     "imagemin-mozjpeg": "^8.0.0",
     "imagemin-pngquant": "^8.0.0",
     "node-gyp": "^6.1.0",
+    "nuxt-client-init-module": "^0.1.8",
     "nuxt-i18n": "^6.5.0",
     "unzipper": "^0.10.7",
     "url-download": "^0.0.8",

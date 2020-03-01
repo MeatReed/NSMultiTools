@@ -8,7 +8,7 @@ import mainWinHandler from './mainWindow'
 process.env.ELECTRON_DISABLE_SECURITY_WARNINGS = 'true'
 
 electronDebug({
-  showDevTools: false,
+  showDevTools: true,
   devToolsMode: 'right'
 })
 

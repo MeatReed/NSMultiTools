@@ -2,7 +2,6 @@
   <header class="appstore-header">
     <v-app-bar
       app
-      clipped-left
     >
         <v-app-bar-nav-icon @click="drawer = !drawer" />
         <span class="title ml-3 mr-5">Switch Appstore</span>
@@ -29,7 +28,6 @@
       <v-navigation-drawer
         v-model="drawer"
         app
-        clipped
       >
       <v-list
         dense
@@ -102,6 +100,7 @@
         </v-card-text>
       </v-card>
     </v-dialog>
+    <navigation-account />
   </header>
 </template>
 
@@ -109,8 +108,12 @@
 import { remote } from 'electron'
 import downloadUrl from 'url-download'
 import path from 'path'
+import navigationAccount from '@/components/navigationAccount'
 
 export default {
+  components: {
+    navigationAccount
+  },
   async asyncData({ $axios }) {
     try {
       const data = await $axios.$get('https://www.switchbru.com/appstore/repo.json')
@@ -128,7 +131,7 @@ export default {
     isLoading: false,
     select: null,
     search: null,
-    drawer: null,
+    drawer: false,
     items: [
       { title: 'Accueil', icon: 'mdi-home', to:'/appstore' },
       { title: 'Jeux', icon: 'mdi-play', to:'/appstore/games' },

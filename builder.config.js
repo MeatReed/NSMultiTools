@@ -1,8 +1,8 @@
-const ICONS_DIR = 'build/icons/'
+const ICONS_DIR = 'icons/'
 
 const windowsOS = {
   win: {
-    icon: ICONS_DIR + 'win-icon.ico',
+    icon: ICONS_DIR + 'win-icon.png',
     publisherName: 'MeatReed',
     target: [
       {

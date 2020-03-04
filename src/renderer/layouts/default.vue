@@ -3,10 +3,8 @@
     <v-content>
       <nuxt />
     </v-content>
-    <v-footer
-      app
-    >
-      <span>Make by MeatReed</span>
+    <v-footer app>
+      <span>Made by MeatReed</span>
       <v-spacer />
       <span>&copy; 2020</span>
     </v-footer>
@@ -26,12 +24,12 @@ export default {
 </script>
 
 <style>
-::-webkit-scrollbar {
-    display: none;
+* {
+  font-family: "Montserrat";
 }
 
-body {
-  font-family: Helvetica, sans-serif;
+::-webkit-scrollbar {
+  display: none;
 }
 
 .v-content {
@@ -39,14 +37,14 @@ body {
 }
 
 p {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .author {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .changelog {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 </style>

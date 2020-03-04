@@ -1,7 +1,11 @@
 <template>
   <div>
     <app-header />
-    <get-appstore-category category="misc" category2="_misc" category3="concept"/>
+    <get-appstore-category
+      category="misc"
+      category2="_misc"
+      category3="concept"
+    />
   </div>
 </template>
 

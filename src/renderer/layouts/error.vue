@@ -2,26 +2,24 @@
   <v-app id="inspire">
     <app-header />
     <v-content>
-      <v-container
-          class="fill-height"
-          fluid
-        >
-        <v-row
-          align="center"
-          justify="center"
-        >
-           <v-col class="justify-center">
-            <h1 v-if="error.statusCode === 404">Page non trouvée</h1>
-            <h1 v-else>Une erreur s'est produite</h1>
+      <v-container class="fill-height" fluid>
+        <v-row align="center" justify="center">
+          <v-col class="justify-center">
+            <h1 v-if="error.statusCode === 404">
+              Page non trouvée
+            </h1>
+            <h1 v-else>
+              Une erreur s'est produite
+            </h1>
             <br />
-            <v-btn nuxt to="/">Accueil</v-btn>
-           </v-col>
+            <v-btn nuxt to="/">
+              Accueil
+            </v-btn>
+          </v-col>
         </v-row>
       </v-container>
     </v-content>
-    <v-footer
-      app
-    >
+    <v-footer app>
       <span>Make by MeatReed</span>
       <v-spacer />
       <span>&copy; 2020</span>
@@ -34,20 +32,20 @@ import appHeader from '@/components/navigationHome'
 
 export default {
   name: 'NuxtError',
+  components: {
+    appHeader
+  },
   props: {
     error: {
       type: Object,
       default: null
     }
   },
-  components: {
-    appHeader
-  },
   computed: {
-    statusCode () {
+    statusCode() {
       return (this.error && this.error.statusCode) || 500
     },
-    message () {
+    message() {
       return this.error.message || '<%= messages.client_error %>'
     }
   }
@@ -56,7 +54,7 @@ export default {
 
 <style>
 ::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
 
 body {
@@ -64,14 +62,14 @@ body {
 }
 
 p {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .author {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 
 .changelog {
-  color: #FFFFFF;
+  color: #ffffff;
 }
 </style>

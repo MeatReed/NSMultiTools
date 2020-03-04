@@ -1,4 +1,4 @@
-import('roboto-fontface/css/roboto/roboto-fontface.css');
+import('roboto-fontface/css/roboto/roboto-fontface.css')
 import('roboto-fontface/fonts/roboto/Roboto-Thin.woff2') //100
 import('roboto-fontface/fonts/roboto/Roboto-Light.woff2') //300
 import('roboto-fontface/fonts/roboto/Roboto-Regular.woff2') //400

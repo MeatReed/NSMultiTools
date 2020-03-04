@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <get-appstore-category category="advanced"/>
+    <get-appstore-category category="advanced" />
   </div>
 </template>
 

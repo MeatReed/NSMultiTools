@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <get-appstore-category category="emu"/>
+    <get-appstore-category category="emu" />
   </div>
 </template>
 

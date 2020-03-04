@@ -7,14 +7,16 @@ module.exports = {
   mode: 'spa',
   head: {
     title: 'NSMultiTools',
-    meta: [
-      { charset: 'utf-8' }
+    meta: [{ charset: 'utf-8' }],
+    link: [
+      {
+        rel: 'stylesheet',
+        href: '@/assets/font/Montserrat-Regular.ttf'
+      }
     ]
   },
   loading: '@/components/loading.vue',
-  plugins: [
-    {ssr: true, src: '@/plugins/icons.js'}
-  ],
+  plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
   modules: [
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
@@ -46,4 +48,4 @@ module.exports = {
   markdownit: {
     injected: true
   }
-};
+}

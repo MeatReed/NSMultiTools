@@ -3,26 +3,26 @@ import { app } from 'electron'
 import db from 'electron-db'
 import path from 'path'
 import fs from 'fs'
-let userData = path.join(process.env.APPDATA, 'nsmultitools');
+let userData = path.join(process.env.APPDATA, 'nsmultitools')
 
-if (!fs.existsSync(userData)){
-  fs.mkdirSync(userData);
+if (!fs.existsSync(userData)) {
+  fs.mkdirSync(userData)
 }
 
 if (!fs.existsSync(path.join(userData, 'config.json'))) {
-  let obj = new Object();
+  let obj = new Object()
 
-  obj.dark = true;
-  obj.username = null;
-  obj.password = null;
-  obj.remember = false;
+  obj.dark = true
+  obj.username = null
+  obj.password = null
+  obj.remember = false
   //Creates config file
-  db.createTable('config', userData, (succ, msg) => {
+  db.createTable('config', userData, () => {
     //add content obj.dark = true;
     db.insertTableContent('config', obj, (succ, msg) => {
       // succ - boolean, tells if the call is successful
-      console.log("Success: " + succ);
-      console.log("Message: " + msg);
+      console.log('Success: ' + succ)
+      console.log('Message: ' + msg)
     })
   })
 }
@@ -33,10 +33,11 @@ if (!fs.existsSync(path.join(userData, 'config.json'))) {
 global.__resources = undefined // eslint-disable-line no-underscore-dangle
 // noinspection BadExpressionStatementJS
 INCLUDE_RESOURCES_PATH // eslint-disable-line no-unused-expressions
-if (__resources === undefined) console.error('[Main-process]: Resources path is undefined')
+if (__resources === undefined)
+  console.error('[Main-process]: Resources path is undefined')
 
 // Quit when all windows are closed.
-app.on('window-all-closed', function () {
+app.on('window-all-closed', function() {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') app.quit()

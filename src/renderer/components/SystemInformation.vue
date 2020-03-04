@@ -58,7 +58,7 @@
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       chrome: process.versions.chrome,
       electron: process.versions.electron,
@@ -73,25 +73,25 @@ export default {
 
 <style scoped>
 .title {
-    color: #364758;
-    font-size: 1.5em;
-    letter-spacing: .25px;
-    margin-top: 10px;
+  color: #364758;
+  font-size: 1.5em;
+  letter-spacing: 0.25px;
+  margin-top: 10px;
 }
 .items {
-    margin-top: 8px;
+  margin-top: 8px;
 }
 .item {
-    display: flex;
-    margin-bottom: 6px;
+  display: flex;
+  margin-bottom: 6px;
 }
 .item .name {
-    color: #6a6a6a;
-    margin-right: 6px;
+  color: #6a6a6a;
+  margin-right: 6px;
 }
 
 .item .value {
-    color: #364758;
-    font-weight: bold;
+  color: #364758;
+  font-weight: bold;
 }
 </style>

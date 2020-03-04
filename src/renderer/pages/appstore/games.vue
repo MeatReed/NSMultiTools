@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <get-appstore-category category="game"/>
+    <get-appstore-category category="game" />
   </div>
 </template>
 

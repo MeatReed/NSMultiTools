@@ -5,15 +5,8 @@
       <v-container fluid class="fill-witdh">
         <v-row>
           <v-col>
-            <v-hover
-              v-slot:default="{ hover }"
-              open-delay="200"
-            >
-              <v-card
-                class="mx-auto"
-                :elevation="hover ? 16 : 2"
-                outlined
-              >
+            <v-hover v-slot:default="{ hover }" open-delay="200">
+              <v-card class="mx-auto" :elevation="hover ? 16 : 2" outlined>
                 <v-card-title>
                   News test 1
                 </v-card-title>
@@ -29,15 +22,8 @@
             </v-hover>
           </v-col>
           <v-col>
-            <v-hover
-              v-slot:default="{ hover }"
-              open-delay="200"
-            >
-              <v-card
-                class="mx-auto"
-                :elevation="hover ? 16 : 2"
-                outlined
-              >
+            <v-hover v-slot:default="{ hover }" open-delay="200">
+              <v-card class="mx-auto" :elevation="hover ? 16 : 2" outlined>
                 <v-card-title>
                   News test 2
                 </v-card-title>
@@ -53,15 +39,8 @@
             </v-hover>
           </v-col>
           <v-col>
-            <v-hover
-              v-slot:default="{ hover }"
-              open-delay="200"
-            >
-              <v-card
-                class="mx-auto"
-                :elevation="hover ? 16 : 2"
-                outlined
-              >
+            <v-hover v-slot:default="{ hover }" open-delay="200">
+              <v-card class="mx-auto" :elevation="hover ? 16 : 2" outlined>
                 <v-card-title>
                   News test 3
                 </v-card-title>
@@ -83,7 +62,6 @@
 </template>
 
 <script>
-import { remote } from 'electron'
 import appHeader from '@/components/navigationHome'
 
 export default {

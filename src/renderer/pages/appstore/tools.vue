@@ -1,7 +1,7 @@
 <template>
   <div>
     <app-header />
-    <get-appstore-category category="tool"/>
+    <get-appstore-category category="tool" />
   </div>
 </template>
 

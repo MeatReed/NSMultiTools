@@ -1,9 +1,5 @@
 <template>
-  <v-progress-circular
-    indeterminate
-    :value="loadingVal"
-    v-if="loading"
-  ></v-progress-circular>
+  <v-progress-circular v-if="loading" indeterminate :value="loadingVal" />
 </template>
 
 <script>
@@ -13,13 +9,13 @@ export default {
     loadingVal: 0
   }),
   methods: {
-    start () {
+    start() {
       this.loading = true
     },
-    finish () {
+    finish() {
       this.loading = false
     },
-    increase (num) {
+    increase(num) {
       this.loadingVal = num
     }
   }

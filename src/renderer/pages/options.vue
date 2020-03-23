@@ -19,7 +19,7 @@
 
 <script>
 import appHeader from '@/components/navigationHome'
-import db from 'electron-db'
+import config from 'electron-json-config'
 
 export default {
   components: {
@@ -37,16 +37,10 @@ export default {
     modelSwitch() {
       if (this.$vuetify.theme.dark === true) {
         this.$vuetify.theme.dark = false
-        db.updateRow('config', { dark: true }, { dark: false }, (succ, msg) => {
-          console.log('Success: ' + succ)
-          console.log('Message: ' + msg)
-        })
+        config.set('dark', false)
       } else {
         this.$vuetify.theme.dark = true
-        db.updateRow('config', { dark: false }, { dark: true }, (succ, msg) => {
-          console.log('Success: ' + succ)
-          console.log('Message: ' + msg)
-        })
+        config.set('dark', true)
       }
     }
   }

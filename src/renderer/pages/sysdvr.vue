@@ -119,20 +119,11 @@ export default {
         this.args.push('rtsp')
       }
 
-      let smash = spawn(`${userData}/UsbStream/SysDVR-Client.exe`, this.args)
-      smash.stdout.on('data', (data) => {
-        console.log(data.toString())
-      })
-      smash.on('exit', (code) => {
-        console.log(code)
-        /*if(code === 4294967290) {
-          this.typeAlert = 'error'
-          this.messageAlert = 'Les drivers ne sont pas installés !'
-          this.dialogDriver = true
-        } else {
-          this.typeAlert = 'success'
-          this.messageAlert = 'Payload injecté !'
-        }*/
+      let smash = spawn(`${userData}/UsbStream/SysDVR-Client.exe`, this.args, {
+        shell: true,
+        detached: true,
+        windowsHide: true,
+        stdio: 'inherit'
       })
     }
   }

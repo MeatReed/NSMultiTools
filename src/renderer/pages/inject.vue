@@ -26,18 +26,26 @@
                     </v-chip>
                   </template>
                 </v-file-input>
-                <v-btn text @click="launchPayload()">
+                <v-btn text :disabled="disabledInject" @click="launchPayload()">
                   Injecter
                 </v-btn>
               </v-col>
               <v-col>
-                <v-textarea
-                  v-model="areaConsole"
-                  readonly
-                  outlined
-                  no-resize
-                  label="Log"
-                />
+                <v-select v-model="selectPayload" :items="favList" />
+                <v-btn
+                  :disabled="disabledAddFav"
+                  color="success"
+                  @click="addFav()"
+                >
+                  Ajouter en favorie
+                </v-btn>
+                <v-btn
+                  :disabled="disabledDeleteFav"
+                  color="error"
+                  @click="deleteFav()"
+                >
+                  Retirer en favorie
+                </v-btn>
               </v-col>
             </v-row>
           </v-col>
@@ -95,6 +103,8 @@ import usb from 'usb'
 import { exec, spawn } from 'child_process'
 import appHeader from '@/components/navigationHome'
 import path from 'path'
+import config from 'electron-json-config'
+import fs from 'fs'
 
 let usbVerifyLaunch = usb.getDeviceList().find(function(d) {
   return d.deviceDescriptor.idVendor === 0x0955
@@ -122,11 +132,16 @@ export default {
     appHeader
   },
   data: () => ({
-    files: [],
+    files: null,
+    file: null,
+    favList: config.has('payloadFav') ? config.get('payloadFav') : [],
     messageAlert: messageAlert,
     typeAlert: typeAlert,
     dialogDriver: false,
-    areaConsole: null
+    disabledAddFav: true,
+    disabledDeleteFav: true,
+    disabledInject: true,
+    selectPayload: null
   }),
   mounted() {
     usb.on('attach', (device) => {
@@ -141,6 +156,32 @@ export default {
         this.onUsb('detach')
       }
     })
+  },
+  watch: {
+    files(file) {
+      if (file) {
+        this.file = file.path
+        this.disabledAddFav = false
+        this.disabledInject = false
+      } else {
+        this.file = null
+        this.disabledAddFav = true
+        this.disabledInject = true
+      }
+    },
+    selectPayload(file) {
+      if (file) {
+        this.file = file
+        this.disabledInject = false
+        this.disabledDeleteFav = false
+        this.typeAlert = 'success'
+        this.messageAlert = file + ' a bien été sélectionner.'
+      } else {
+        this.file = null
+        this.disabledInject = true
+        this.disabledDeleteFav = false
+      }
+    }
   },
   methods: {
     openURL(url) {
@@ -157,7 +198,7 @@ export default {
           "La Nintendo Switch n'est pas connectée à l'ordinateur ou en mode RCM !"
       }
     },
-    async installDriver() {
+    installDriver() {
       this.dialogDriver = false
       exec(`${userData}/apx_driver/InstallDriver.exe`)
     },
@@ -168,17 +209,16 @@ export default {
           "La Nintendo Switch n'est pas connectée à l'ordinateur ou en mode RCM !"
         return
       }
-      if (!this.files) {
+      if (!this.file) {
         this.typeAlert = 'error'
         this.messageAlert = "Vous n'avez pas sélectionné de payload !"
         return
       }
-      let smash = spawn(`${userData}/TegraRcmSmash/TegraRcmSmash.exe`, [
-        `${this.files.path}`
-      ])
-      smash.stdout.on('data', (data) => {
-        this.areaConsole = data.toString()
-      })
+      let smash = spawn(
+        `${userData}/TegraRcmSmash/TegraRcmSmash.exe`,
+        [`${this.file}`],
+        { shell: true, detached: true, windowsHide: true, stdio: 'inherit' }
+      )
       smash.on('exit', (code) => {
         if (code === 4294967290) {
           this.typeAlert = 'error'
@@ -189,6 +229,26 @@ export default {
           this.messageAlert = 'Payload injecté !'
         }
       })
+    },
+    addFav() {
+      if (this.favList.includes(this.file)) {
+        this.typeAlert = 'error'
+        this.messageAlert = 'Ce payload existe déjà dans les favoris !'
+      } else {
+        this.typeAlert = 'success'
+        this.messageAlert =
+          'Ce payload a bien été ajouté dans la liste des favoris !'
+        this.favList.push(this.file)
+        config.set('payloadFav', this.favList)
+      }
+    },
+    deleteFav() {
+      var index = this.favList.indexOf(this.file)
+      while (index > -1) {
+        this.favList.splice(index, 1)
+        index = this.favList.indexOf(this.file)
+      }
+      config.set('payloadFav', this.favList)
     }
   }
 }

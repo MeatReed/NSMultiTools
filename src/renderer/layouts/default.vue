@@ -12,28 +12,25 @@
 </template>
 
 <script>
-import db from 'electron-db'
+import config from 'electron-json-config'
 
 export default {
   beforeCreate() {
-    db.getField('config', 'dark', (succ, data) => {
-      this.$vuetify.theme.dark = data[0]
-    })
+    if (!config.has('dark')) {
+      config.set('dark', true)
+    }
+    this.$vuetify.theme.dark = config.get('dark')
   }
 }
 </script>
 
 <style>
 * {
-  font-family: "Montserrat";
+  font-family: 'Montserrat';
 }
 
 ::-webkit-scrollbar {
   display: none;
-}
-
-.v-content {
-  padding: 56px 29px 36px 0px !important;
 }
 
 p {

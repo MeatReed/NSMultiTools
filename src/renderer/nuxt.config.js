@@ -21,8 +21,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
     '@bazzite/nuxt-optimized-images',
-    '@nuxtjs/markdownit',
-    'nuxt-client-init-module'
+    '@nuxtjs/markdownit'
     /*[
       'nuxt-i18n', {
         locales: [

@@ -37,7 +37,7 @@
       </v-list>
       <template v-slot:append>
         <div class="pa-2">
-          <v-btn nuxt to="/apps" block color="grey">
+          <v-btn nuxt to="/" block color="grey">
             Applications
           </v-btn>
         </div>
@@ -96,7 +96,6 @@
         </v-card-text>
       </v-card>
     </v-dialog>
-    <navigation-account />
   </header>
 </template>
 
@@ -104,12 +103,8 @@
 import { remote } from 'electron'
 import downloadUrl from 'url-download'
 import path from 'path'
-import navigationAccount from '@/components/navigationAccount'
 
 export default {
-  components: {
-    navigationAccount
-  },
   async asyncData({ $axios }) {
     try {
       const data = await $axios.$get(

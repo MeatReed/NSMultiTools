@@ -4,6 +4,9 @@
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <span class="title ml-3 mr-5">NSMultiTools</span>
       <v-spacer />
+      <v-btn icon nuxt to="/">
+        <v-icon>mdi-application</v-icon>
+      </v-btn>
       <v-btn icon color="red" @click="closeWindow">
         <v-icon>mdi-close</v-icon>
       </v-btn>
@@ -28,23 +31,18 @@
         </div>
       </template>
     </v-navigation-drawer>
-    <navigation-account />
   </header>
 </template>
 
 <script>
 import { remote } from 'electron'
-import navigationAccount from '@/components/navigationAccount'
 
 export default {
-  components: {
-    navigationAccount
-  },
   data: () => ({
     drawer: false,
     items: [
-      { title: 'Accueil', icon: 'mdi-home', to: '/' },
-      { title: 'Applications', icon: 'mdi-application', to: '/apps' },
+      //{ title: 'Accueil', icon: 'mdi-home', to: '/' },
+      { title: 'Applications', icon: 'mdi-application', to: '/' },
       { title: 'Information', icon: 'mdi-play', to: '/info' },
       { title: 'Changelog', icon: 'mdi-post', to: '/changelog' }
     ]

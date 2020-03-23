@@ -1,30 +1,11 @@
 /* globals INCLUDE_RESOURCES_PATH */
 import { app } from 'electron'
-import db from 'electron-db'
 import path from 'path'
 import fs from 'fs'
 let userData = path.join(process.env.APPDATA, 'nsmultitools')
 
 if (!fs.existsSync(userData)) {
   fs.mkdirSync(userData)
-}
-
-if (!fs.existsSync(path.join(userData, 'config.json'))) {
-  let obj = new Object()
-
-  obj.dark = true
-  obj.username = null
-  obj.password = null
-  obj.remember = false
-  //Creates config file
-  db.createTable('config', userData, () => {
-    //add content obj.dark = true;
-    db.insertTableContent('config', obj, (succ, msg) => {
-      // succ - boolean, tells if the call is successful
-      console.log('Success: ' + succ)
-      console.log('Message: ' + msg)
-    })
-  })
 }
 
 /**

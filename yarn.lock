@@ -3900,10 +3900,6 @@ electron-builder@22.3.2:
     update-notifier "^4.0.0"
     yargs "^15.1.0"
 
-"electron-db@https://github.com/MeatReed/electron-db":
-  version "0.15.2"
-  resolved "https://github.com/MeatReed/electron-db#62c6c4b5912c10eb05dce2dc3206d8df1b23f0dc"
-
 electron-debug@3.0.1:
   version "3.0.1"
   resolved "https://registry.yarnpkg.com/electron-debug/-/electron-debug-3.0.1.tgz#95b43b968ec7dbe96300034143e58b803a1e82dc"
@@ -3926,6 +3922,11 @@ electron-is-dev@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-1.1.0.tgz#b15a2a600bdc48a51a857d460e05f15b19a2522c"
   integrity sha512-Z1qA/1oHNowGtSBIcWk0pcLEqYT/j+13xUw/MYOrBUOL4X7VN0i0KCTf5SqyvMPmW5pSPKbo28wkxMxzZ20YnQ==
+
+electron-json-config@^1.5.3:
+  version "1.5.3"
+  resolved "https://registry.yarnpkg.com/electron-json-config/-/electron-json-config-1.5.3.tgz#92a878b608673412a822325b594d7005945b3a85"
+  integrity sha512-+nRzmoe9xlRZLABInTzSYPH5X1Z5bzHMoIPEMGvNGUGjHEBCoAR4n+iHYdC0vVOJjupJ4MpNLbtpo+vgCKN91A==
 
 electron-localshortcut@^3.1.0:
   version "3.2.1"
@@ -7332,11 +7333,6 @@ number-is-nan@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/number-is-nan/-/number-is-nan-1.0.1.tgz#097b602b53422a522c1afb8790318336941a011d"
   integrity sha1-CXtgK1NCKlIsGvuHkDGDNpQaAR0=
-
-nuxt-client-init-module@^0.1.8:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/nuxt-client-init-module/-/nuxt-client-init-module-0.1.8.tgz#6b8fabdf0ff4d5f2f4ec72df2dab553d9a331c92"
-  integrity sha512-pHswEnDSc2JxC57XsPK8dPPbUeHHe3u56zb/Lt2CihkVo5NsuLjGVPLFBbKMVaqRCIwvhbmik6wXHOSPJdpJbA==
 
 nuxt-i18n@^6.5.0:
   version "6.5.0"
@@ -11000,7 +10996,7 @@ vuetify-loader@^1.4.3:
   dependencies:
     loader-utils "^1.2.0"
 
-vuetify@^2.2.11:
+vuetify@2.2.11:
   version "2.2.11"
   resolved "https://registry.yarnpkg.com/vuetify/-/vuetify-2.2.11.tgz#40133761842c556070c5dc749ee32cb9df9ffe7f"
   integrity sha512-lqhW7UIEx742G0VRAgXS1q2h4aAAGC7QTh2gxha+w12NsF5lrNXy2/ob5qvdklzCk6qS0ij7zbh2FooDdGP/QQ==

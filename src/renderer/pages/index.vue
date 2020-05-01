@@ -80,7 +80,7 @@ let userData = path.join(process.env.APPDATA, 'nsmultitools')
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
     dialog: false,
@@ -90,13 +90,14 @@ export default {
         name: 'Switch Appstore',
         img: require('../assets/appstorenx.png'),
         to: { name: '/appstore' },
-        online: true
+        online: true,
       },
       {
         name: 'Inject Payload',
         img: require('../assets/smashFistIcon.png'),
         to: { name: '/inject' },
-        online: false
+        online: false,
+        download: true,
       },
       /*{
         name: 'SysDVR',
@@ -108,13 +109,15 @@ export default {
         name: 'IMSP',
         img: require('../assets/imsp.png'),
         to: { name: '/imsp' },
-        online: false
+        online: false,
+        download: true,
       },
       {
         name: 'SX OS LICENSE',
         img: require('../assets/sxos.png'),
         to: { name: '/sxos' },
-        online: true
+        online: true,
+        download: true,
       },
       /*{
         name: 'switch-lan-play',
@@ -128,7 +131,7 @@ export default {
         to: { name: '/tinfoil' },
         online: true
       }*/
-    ]
+    ],
   }),
   created() {
     if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
@@ -137,9 +140,9 @@ export default {
       this.dialog = true
     } else if (!fs.existsSync(path.join(userData, 'ssnc'))) {
       this.dialog = true
-    } else if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
+    } /* else if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
       this.dialog = true
-    }
+    }*/
   },
   methods: {
     async installFiles() {
@@ -152,7 +155,7 @@ export default {
         download(
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/TegraRcmSmash/TegraRcmSmash.exe',
           path.join(userData, 'TegraRcmSmash')
-        ).on('close', function() {
+        ).on('close', function () {
           console.log('Download TegraRCMSmash')
         })
       }
@@ -161,7 +164,7 @@ export default {
         download(
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/apx_driver/apx_driver.zip',
           path.join(userData, 'apx_driver')
-        ).on('close', async function() {
+        ).on('close', async function () {
           console.log('Download apx_driver.zip')
           await fs
             .createReadStream(
@@ -175,7 +178,7 @@ export default {
         download(
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/UsbStream/UsbStream.zip',
           path.join(userData, 'UsbStream')
-        ).on('close', async function() {
+        ).on('close', async function () {
           console.log('Download UsbStream.zip')
           await fs
             .createReadStream(path.join(userData, 'UsbStream', 'UsbStream.zip'))
@@ -189,12 +192,12 @@ export default {
         )
         var request = https.get(
           'https://raw.githubusercontent.com/MeatReed/NSMultiTools/additionalFiles/ssnc/serials.json',
-          function(response) {
-            response.on('finish', function() {}).pipe(file)
+          function (response) {
+            response.on('finish', function () {}).pipe(file)
           }
         )
       }
-    }
-  }
+    },
+  },
 }
 </script>

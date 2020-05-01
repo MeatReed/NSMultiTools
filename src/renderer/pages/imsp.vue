@@ -2,7 +2,7 @@
   <div>
     <app-header />
     <v-content>
-      <div class=" font-weight-bold headline text-center">
+      <div class="font-weight-bold headline text-center">
         Is My Switch Patched?
       </div>
       <v-container class="fill-height lighten-5" fluid>
@@ -87,14 +87,14 @@ let userData = path.join(process.env.APPDATA, 'nsmultitools')
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
     serialInput: null,
     messageSerial: null,
     typeSerial: null,
     valueAlert: false,
-    dialogSN: false
+    dialogSN: false,
   }),
   methods: {
     inputUpdate() {
@@ -183,8 +183,8 @@ export default {
       } else {
         return this.send_data(serial_input, null, null)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

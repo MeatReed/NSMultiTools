@@ -44,14 +44,14 @@ export default {
       //{ title: 'Accueil', icon: 'mdi-home', to: '/' },
       { title: 'Applications', icon: 'mdi-application', to: '/' },
       { title: 'Information', icon: 'mdi-play', to: '/info' },
-      { title: 'Changelog', icon: 'mdi-post', to: '/changelog' }
-    ]
+      { title: 'Changelog', icon: 'mdi-post', to: '/changelog' },
+    ],
   }),
   methods: {
-    closeWindow: function() {
+    closeWindow: function () {
       var window = remote.getCurrentWindow()
       window.close()
-    }
-  }
+    },
+  },
 }
 </script>

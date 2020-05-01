@@ -112,7 +112,7 @@ export default {
       )
 
       return {
-        allPackages: data.packages
+        allPackages: data.packages,
       }
     } catch (err) {
       console.log(err)
@@ -131,16 +131,16 @@ export default {
       {
         title: 'Emulateurs',
         icon: 'mdi-gamepad-variant-outline',
-        to: '/appstore/emulators'
+        to: '/appstore/emulators',
       },
       { title: 'Outils', icon: 'mdi-tools', to: '/appstore/tools' },
       {
         title: 'Avancés',
         icon: 'mdi-puzzle-outline',
-        to: '/appstore/advanced'
+        to: '/appstore/advanced',
       },
       { title: 'Thèmes', icon: 'mdi-bookshelf', to: '/appstore/themes' },
-      { title: 'Misc', icon: 'mdi-cube-outline', to: '/appstore/misc' }
+      { title: 'Misc', icon: 'mdi-cube-outline', to: '/appstore/misc' },
     ],
     modalTitle: '',
     modalDesc: '',
@@ -154,7 +154,7 @@ export default {
     snackbar: false,
     snackbarColor: '',
     snackbarMessage: '',
-    snackbarTimeout: 6000
+    snackbarTimeout: 6000,
   }),
   computed: {
     itemsPackage() {
@@ -166,7 +166,7 @@ export default {
 
         return Object.assign({}, entry, { Name })
       })
-    }
+    },
   },
   watch: {
     select(val) {
@@ -208,7 +208,7 @@ export default {
           console.log(err)
         })
         .finally(() => (this.isLoading = false))
-    }
+    },
   },
   methods: {
     getFormatedDesc(e) {
@@ -229,7 +229,7 @@ export default {
       let self = this
       var installPath = await remote.dialog.showSaveDialogSync({
         title: `Installation ${name}.zip`,
-        defaultPath: `${name}.zip`
+        defaultPath: `${name}.zip`,
       })
       var urlParse = path.parse(installPath)
       this.snackbarColor = 'success'
@@ -239,23 +239,23 @@ export default {
       downloadUrl(
         `https://switchbru.com/appstore/zips/${name}.zip`,
         urlParse.dir
-      ).on('close', function() {
+      ).on('close', function () {
         self.snackbar = false
         self.snackbarColor = 'success'
         self.snackbarMessage = `${name}.zip a été installé avec succès !`
         self.snackbarTimeout = 6000
-        setTimeout(function() {
+        setTimeout(function () {
           self.snackbar = true
         }, 1000)
       })
     },
-    getIcon: function(name) {
+    getIcon: function (name) {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
     },
-    closeWindow: function(event) {
+    closeWindow: function (event) {
       var window = remote.getCurrentWindow()
       window.close()
-    }
-  }
+    },
+  },
 }
 </script>

@@ -171,7 +171,7 @@ import path from 'path'
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   async asyncData({ $axios }) {
     try {
@@ -222,7 +222,7 @@ export default {
         allPackages: data.packages,
         gamePackages: gamePackages,
         toolPackages: toolPackages,
-        advancedPackages: advancedPackages
+        advancedPackages: advancedPackages,
       }
     } catch (err) {
       console.log(err)
@@ -243,43 +243,43 @@ export default {
         id: 'games',
         name: 'Jeux',
         json_id: 'game',
-        icon: 'fa-play'
+        icon: 'fa-play',
       },
       {
         id: 'emulators',
         name: 'Emulateurs',
         json_id: 'emu',
-        icon: 'fa-gamepad'
+        icon: 'fa-gamepad',
       },
       {
         id: 'tools',
         name: 'Outils',
         json_id: 'tool',
-        icon: 'fa-cog'
+        icon: 'fa-cog',
       },
       {
         id: 'Advanced',
         name: 'Avancés',
         json_id: 'advanced',
-        icon: 'fa-puzzle-piece'
+        icon: 'fa-puzzle-piece',
       },
       {
         id: 'themes',
         name: 'Thèmes',
         json_id: 'theme',
-        icon: 'fa-swatchbook'
+        icon: 'fa-swatchbook',
       },
       {
         id: 'misc',
         name: 'Mics',
         json_id: '_misc',
-        icon: 'fa-cubes'
-      }
+        icon: 'fa-cubes',
+      },
     ],
     snackbar: false,
     snackbarColor: '',
     snackbarMessage: '',
-    snackbarTimeout: 6000
+    snackbarTimeout: 6000,
   }),
   methods: {
     getFormatedDesc(e) {
@@ -313,7 +313,7 @@ export default {
       let self = this
       var installPath = await remote.dialog.showSaveDialogSync({
         title: `Installation ${name}.zip`,
-        defaultPath: `${name}.zip`
+        defaultPath: `${name}.zip`,
       })
       var urlParse = path.parse(installPath)
       this.snackbarColor = 'success'
@@ -323,19 +323,19 @@ export default {
       downloadUrl(
         `https://switchbru.com/appstore/zips/${name}.zip`,
         urlParse.dir
-      ).on('close', function() {
+      ).on('close', function () {
         self.snackbar = false
         self.snackbarColor = 'success'
         self.snackbarMessage = `${name}.zip a été installé avec succès !`
         self.snackbarTimeout = 6000
-        setTimeout(function() {
+        setTimeout(function () {
           self.snackbar = true
         }, 1000)
       })
     },
-    getIcon: function(name) {
+    getIcon: function (name) {
       return `https://www.switchbru.com/appstore/packages/${name}/icon.png`
-    }
-  }
+    },
+  },
 }
 </script>

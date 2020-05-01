@@ -23,15 +23,15 @@ import config from 'electron-json-config'
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: ({ $vuetify }) => ({
-    modelSwitch: $vuetify.theme.dark
+    modelSwitch: $vuetify.theme.dark,
   }),
   computed: {
     availableLocales() {
       return this.$i18n.locales.filter((i) => i.code !== this.$i18n.locale)
-    }
+    },
   },
   watch: {
     modelSwitch() {
@@ -42,8 +42,8 @@ export default {
         this.$vuetify.theme.dark = true
         config.set('dark', true)
       }
-    }
-  }
+    },
+  },
 }
 </script>
 

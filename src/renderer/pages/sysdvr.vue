@@ -81,7 +81,7 @@ const userData = path.join(process.env.APPDATA, 'nsmultitools')
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
     alertMessage: null,
@@ -90,7 +90,7 @@ export default {
     radioChannel: null,
     radioStream: null,
     dialogDriver: false,
-    args: []
+    args: [],
   }),
   methods: {
     async installDriver() {
@@ -123,10 +123,10 @@ export default {
         shell: true,
         detached: true,
         windowsHide: true,
-        stdio: 'inherit'
+        stdio: 'inherit',
       })
-    }
-  }
+    },
+  },
 }
 </script>
 

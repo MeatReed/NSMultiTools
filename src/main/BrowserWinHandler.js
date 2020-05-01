@@ -36,8 +36,8 @@ export default class BrowserWinHandler {
         ...this.options.webPreferences,
         webSecurity: isProduction, // disable on dev to allow loading local resources
         nodeIntegration: true, // allow loading modules via the require () function
-        devTools: !process.env.SPECTRON // disable on e2e test environment
-      }
+        devTools: !process.env.SPECTRON, // disable on e2e test environment
+      },
     })
     this.browserWindow.on('closed', () => {
       // Dereference the window object

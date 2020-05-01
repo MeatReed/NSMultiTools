@@ -3,18 +3,18 @@ export default {
     home: 'Home',
     applications: 'Applications',
     information: 'Information',
-    options: 'Options'
+    options: 'Options',
   },
   footer: {
-    createdby: 'Created by'
+    createdby: 'Created by',
   },
   index: {
-    createdby: 'Created by'
+    createdby: 'Created by',
   },
   options: {
     dark: 'Dark mode',
     french: 'French',
-    english: 'English'
+    english: 'English',
   },
   appstore: {
     category: 'Category',
@@ -33,7 +33,7 @@ export default {
     download: 'Download',
     information: 'Information',
     source: 'Source',
-    return: 'Back to home page'
+    return: 'Back to home page',
   },
   imsp: {
     sn: 'Serial Number',
@@ -51,6 +51,6 @@ export default {
       'Your Nintendo Switch is not patched, so you can hack it properly!',
     warning: "It's impossible to tell if your Nintendo Switch is hackable!",
     patched: "Your Nintendo Switch is patched, you can't hack it!",
-    incorrect: 'The serial number you have entered is incorrect!'
-  }
+    incorrect: 'The serial number you have entered is incorrect!',
+  },
 }

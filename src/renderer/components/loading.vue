@@ -6,7 +6,7 @@
 export default {
   data: () => ({
     loading: false,
-    loadingVal: 0
+    loadingVal: 0,
   }),
   methods: {
     start() {
@@ -17,7 +17,7 @@ export default {
     },
     increase(num) {
       this.loadingVal = num
-    }
-  }
+    },
+  },
 }
 </script>

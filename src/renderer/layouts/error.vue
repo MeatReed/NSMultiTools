@@ -33,13 +33,13 @@ import appHeader from '@/components/navigationHome'
 export default {
   name: 'NuxtError',
   components: {
-    appHeader
+    appHeader,
   },
   props: {
     error: {
       type: Object,
-      default: null
-    }
+      default: null,
+    },
   },
   computed: {
     statusCode() {
@@ -47,8 +47,8 @@ export default {
     },
     message() {
       return this.error.message || '<%= messages.client_error %>'
-    }
-  }
+    },
+  },
 }
 </script>
 

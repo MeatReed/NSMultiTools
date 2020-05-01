@@ -9,7 +9,7 @@ const winHandler = new BrowserWinHandler({
   height: 720,
   width: 1280,
   frame: false,
-  resizable: false
+  resizable: false,
 })
 
 winHandler.onCreated((browserWindow) => {

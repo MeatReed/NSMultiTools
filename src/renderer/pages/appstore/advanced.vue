@@ -12,7 +12,7 @@ import getAppstoreCategory from '@/components/getAppstoreCategory'
 export default {
   components: {
     appHeader,
-    getAppstoreCategory
-  }
+    getAppstoreCategory,
+  },
 }
 </script>

@@ -11,9 +11,9 @@ module.exports = {
     link: [
       {
         rel: 'stylesheet',
-        href: '@/assets/font/Montserrat-Regular.ttf'
-      }
-    ]
+        href: '@/assets/font/Montserrat-Regular.ttf',
+      },
+    ],
   },
   loading: '@/components/loading.vue',
   plugins: [{ ssr: true, src: '@/plugins/icons.js' }],
@@ -21,7 +21,7 @@ module.exports = {
     '@nuxtjs/vuetify',
     '@nuxtjs/axios',
     '@bazzite/nuxt-optimized-images',
-    '@nuxtjs/markdownit'
+    '@nuxtjs/markdownit',
     /*[
       'nuxt-i18n', {
         locales: [
@@ -42,9 +42,9 @@ module.exports = {
     ]*/
   ],
   edImages: {
-    optimizeImages: true
+    optimizeImages: true,
   },
   markdownit: {
-    injected: true
-  }
+    injected: true,
+  },
 }

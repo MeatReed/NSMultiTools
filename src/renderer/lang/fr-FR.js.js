@@ -3,18 +3,18 @@ export default {
     home: 'Accueil',
     applications: 'Applications',
     information: 'Information',
-    options: 'Options'
+    options: 'Options',
   },
   footer: {
-    createdby: 'Créer par'
+    createdby: 'Créer par',
   },
   index: {
-    createdby: 'Créer par'
+    createdby: 'Créer par',
   },
   options: {
     dark: 'Mode sombre',
     french: 'Français',
-    english: 'Anglais'
+    english: 'Anglais',
   },
   appstore: {
     home: 'Accueil',
@@ -34,7 +34,7 @@ export default {
     download: 'Télécharger',
     information: 'Information',
     source: 'Source',
-    return: "Retourner à l'accueil"
+    return: "Retourner à l'accueil",
   },
   imsp: {
     sn: 'Numéro de série',
@@ -54,6 +54,6 @@ export default {
       'Il est impossible de déterminer si votre Nintendo Switch est hackable !',
     patched:
       'Votre Nintendo Switch est patchée, vous ne pouvez pas la hacker !',
-    incorrect: 'Le numéro de série que vous avez saisi est incorrect !'
-  }
+    incorrect: 'Le numéro de série que vous avez saisi est incorrect !',
+  },
 }

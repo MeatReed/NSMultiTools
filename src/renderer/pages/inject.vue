@@ -106,7 +106,7 @@ import path from 'path'
 import config from 'electron-json-config'
 import fs from 'fs'
 
-let usbVerifyLaunch = usb.getDeviceList().find(function(d) {
+let usbVerifyLaunch = usb.getDeviceList().find(function (d) {
   return d.deviceDescriptor.idVendor === 0x0955
 })
 
@@ -129,7 +129,7 @@ let userData = path.join(process.env.APPDATA, 'nsmultitools')
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
     files: null,
@@ -141,7 +141,7 @@ export default {
     disabledAddFav: true,
     disabledDeleteFav: true,
     disabledInject: true,
-    selectPayload: null
+    selectPayload: null,
   }),
   mounted() {
     usb.on('attach', (device) => {
@@ -181,13 +181,13 @@ export default {
         this.disabledInject = true
         this.disabledDeleteFav = false
       }
-    }
+    },
   },
   methods: {
     openURL(url) {
       remote.shell.openExternal(url)
     },
-    onUsb: function(type) {
+    onUsb: function (type) {
       if (type === 'attach') {
         this.typeAlert = 'success'
         this.messageAlert =
@@ -249,8 +249,8 @@ export default {
         index = this.favList.indexOf(this.file)
       }
       config.set('payloadFav', this.favList)
-    }
-  }
+    },
+  },
 }
 </script>
 

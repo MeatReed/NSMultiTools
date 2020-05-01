@@ -7,7 +7,7 @@
           <v-col cols="4">
             <v-avatar tile size="250">
               <v-img
-                src="https://cdn.discordapp.com/avatars/556940395473534986/6a0bc85e4504fde7f2e8900821281dc8.png?size=2048"
+                src="https://cdn.discordapp.com/avatars/556940395473534986/13ed12f8f2d6e0e893d54fd7375b342c.png?size=2048"
               />
             </v-avatar>
           </v-col>
@@ -69,7 +69,7 @@ import appHeader from '@/components/navigationHome'
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data() {
     return {
@@ -78,14 +78,14 @@ export default {
       node: process.versions.node,
       platform: require('os').platform(),
       vue: require('vue/package.json').version,
-      nuxt: require('nuxt/package.json').version
+      nuxt: require('nuxt/package.json').version,
     }
   },
   methods: {
     openLink(link) {
       remote.shell.openExternal(link)
-    }
-  }
+    },
+  },
 }
 </script>
 

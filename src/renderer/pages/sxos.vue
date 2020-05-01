@@ -63,7 +63,7 @@ import fs from 'fs'
 import axios from 'axios'
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
     messageAlert: null,
@@ -76,7 +76,7 @@ export default {
     btnRetrieveDisabled: true,
     csr_data: null,
     dataPost: null,
-    btnRetrieveLoading: false
+    btnRetrieveLoading: false,
   }),
   watch: {
     fileSelected(file) {
@@ -129,7 +129,7 @@ export default {
         this.valueAlert = true
         this.btnRetrieveDisabled = true
       }
-    }
+    },
   },
   methods: {
     manualRetrieve() {
@@ -157,15 +157,15 @@ export default {
       axios({
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         data: JSON.stringify(this.dataPost),
-        url: 'https://sx.xecuter.com/sx-api-server.php?u=sign'
+        url: 'https://sx.xecuter.com/sx-api-server.php?u=sign',
       })
-        .then(function() {
+        .then(function () {
           self.get_license(csr_data, code)
         })
-        .catch(function() {
+        .catch(function () {
           self.messageAlert =
             "Une erreur est survenue, votre licence n'est sûrement pas valide ou les serveurs SX XECUTER ne sont pas fonctionnels."
           self.typeAlert = 'error'
@@ -185,12 +185,12 @@ export default {
       axios({
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'application/json',
         },
         data: JSON.stringify(this.dataPost),
-        url: 'https://sx.xecuter.com/sx-api-server.php?u=retrieve'
+        url: 'https://sx.xecuter.com/sx-api-server.php?u=retrieve',
       })
-        .then(function(response) {
+        .then(function (response) {
           let license_file = new Uint8Array(response.data.license.length / 2)
           for (var i = 0; i < response.data.license.length / 2; i++) {
             license_file[i] = parseInt(
@@ -201,7 +201,7 @@ export default {
 
           var path = remote.dialog.showSaveDialogSync({
             title: 'Sauvegarde license.dat',
-            defaultPath: 'license.dat'
+            defaultPath: 'license.dat',
           })
           fs.writeFileSync(path, new Buffer.from(license_file))
           shell.showItemInFolder(path)
@@ -211,14 +211,14 @@ export default {
           self.valueAlert = true
           self.btnRetrieveLoading = false
         })
-        .catch(function() {
+        .catch(function () {
           self.messageAlert = 'Une erreur est survenue.'
           self.typeAlert = 'error'
           self.valueAlert = true
           self.btnRetrieveLoading = false
         })
-    }
-  }
+    },
+  },
 }
 </script>
 

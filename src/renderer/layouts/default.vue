@@ -20,7 +20,7 @@ export default {
       config.set('dark', true)
     }
     this.$vuetify.theme.dark = config.get('dark')
-  }
+  },
 }
 </script>
 

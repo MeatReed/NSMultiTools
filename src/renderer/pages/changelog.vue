@@ -35,10 +35,10 @@ import appHeader from '@/components/navigationHome'
 
 export default {
   components: {
-    appHeader
+    appHeader,
   },
   data: () => ({
-    gitRelease: null
+    gitRelease: null,
   }),
   created() {
     try {
@@ -65,7 +65,7 @@ export default {
       if (day.length < 2) day = '0' + day
 
       return [day, month, year].join('/')
-    }
-  }
+    },
+  },
 }
 </script>

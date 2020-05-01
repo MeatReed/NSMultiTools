@@ -1,7 +1,21 @@
 <template>
   <div>
     <app-header />
-    <v-content>
+    <v-content v-if="$fetchState.pending">
+      <v-container fluid>
+        <v-row>
+          <v-col class="text-center">
+            <v-progress-circular
+              :size="70"
+              :width="7"
+              indeterminate
+              color="primary"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+    </v-content>
+    <v-content v-else>
       <v-container fluid>
         <v-row>
           <v-col>
@@ -173,9 +187,8 @@ export default {
   components: {
     appHeader,
   },
-  async asyncData({ $axios }) {
-    try {
-      const data = await $axios.$get(
+  async fetch() {
+    const data = await this.$axios.$get(
         'https://www.switchbru.com/appstore/repo.json'
       )
 
@@ -218,17 +231,16 @@ export default {
         }
       })
 
-      return {
-        allPackages: data.packages,
-        gamePackages: gamePackages,
-        toolPackages: toolPackages,
-        advancedPackages: advancedPackages,
-      }
-    } catch (err) {
-      console.log(err)
-    }
+      this.allPackages = data.packages
+      this.gamePackages = gamePackages
+      this.toolPackages = toolPackages
+      this.advancedPackages = advancedPackages
   },
   data: () => ({
+    allPackages: null,
+    gamePackages: null,
+    toolPackages: null,
+    advancedPackages: null,
     modalTitle: '',
     modalDesc: '',
     modalCategory: '',

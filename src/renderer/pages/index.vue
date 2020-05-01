@@ -4,7 +4,7 @@
     <v-content>
       <v-container fluid>
         <v-row>
-          <v-col v-for="(item, index) of menu" :key="index">
+          <v-col v-for="(item, index) of menuItems" :key="index">
             <v-hover v-slot:default="{ hover }" open-delay="200" aria-disabled>
               <v-tooltip
                 v-if="navigator === 'offline' && item.online === true"
@@ -31,6 +31,7 @@
                 outlined
                 nuxt
                 :to="item.to.name"
+                :disabled="item.disabled"
               >
                 <v-card-title>
                   {{ item.name }}
@@ -85,12 +86,13 @@ export default {
   data: () => ({
     dialog: false,
     navigator: navigator.onLine ? 'online' : 'offline',
-    menu: [
+    menuItems: [
       {
         name: 'Switch Appstore',
         img: require('../assets/appstorenx.png'),
         to: { name: '/appstore' },
         online: true,
+        disabled: false
       },
       {
         name: 'Inject Payload',
@@ -98,12 +100,14 @@ export default {
         to: { name: '/inject' },
         online: false,
         download: true,
+        disabled: false
       },
       /*{
         name: 'SysDVR',
         img: require('../assets/sysdvr.png'),
         to: { name: '/sysdvr' },
-        online: false
+        online: false,
+        disabled: false
       },*/
       {
         name: 'IMSP',
@@ -111,6 +115,7 @@ export default {
         to: { name: '/imsp' },
         online: false,
         download: true,
+        disabled: false
       },
       {
         name: 'SX OS LICENSE',
@@ -118,6 +123,7 @@ export default {
         to: { name: '/sxos' },
         online: true,
         download: true,
+        disabled: false
       },
       /*{
         name: 'switch-lan-play',
@@ -136,10 +142,13 @@ export default {
   created() {
     if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
       this.dialog = true
+      this.menuItems[1].disabled = true
     } else if (!fs.existsSync(path.join(userData, 'apx_driver'))) {
       this.dialog = true
+      this.menuItems[1].disabled = true
     } else if (!fs.existsSync(path.join(userData, 'ssnc'))) {
       this.dialog = true
+      this.menuItems[2].disabled = true
     } /* else if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
       this.dialog = true
     }*/
@@ -156,6 +165,7 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/TegraRcmSmash/TegraRcmSmash.exe',
           path.join(userData, 'TegraRcmSmash')
         ).on('close', function () {
+          this.menuItems[1].disabled = false
           console.log('Download TegraRCMSmash')
         })
       }
@@ -165,6 +175,7 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/apx_driver/apx_driver.zip',
           path.join(userData, 'apx_driver')
         ).on('close', async function () {
+          this.menuItems[1].disabled = false
           console.log('Download apx_driver.zip')
           await fs
             .createReadStream(
@@ -194,6 +205,7 @@ export default {
           'https://raw.githubusercontent.com/MeatReed/NSMultiTools/additionalFiles/ssnc/serials.json',
           function (response) {
             response.on('finish', function () {}).pipe(file)
+            this.menuItems[2].disabled = false
           }
         )
       }

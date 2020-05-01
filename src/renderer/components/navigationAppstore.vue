@@ -105,19 +105,6 @@ import downloadUrl from 'url-download'
 import path from 'path'
 
 export default {
-  async asyncData({ $axios }) {
-    try {
-      const data = await $axios.$get(
-        'https://www.switchbru.com/appstore/repo.json'
-      )
-
-      return {
-        allPackages: data.packages,
-      }
-    } catch (err) {
-      console.log(err)
-    }
-  },
   data: () => ({
     nameLimit: 60,
     packages: [],

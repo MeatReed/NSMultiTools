@@ -11,7 +11,7 @@
                 bottom
               >
                 <template v-slot:activator="{ on }">
-                  <v-card class="mx-auto" max-width="344" outlined v-on="on">
+                  <v-card class="mx-auto" max-width="344" outlined v-on="on" :disabled="item.disabled">
                     <v-card-title>
                       {{ item.name }}
                     </v-card-title>
@@ -90,7 +90,7 @@ export default {
       {
         name: 'Switch Appstore',
         img: require('../assets/appstorenx.png'),
-        to: { name: '/appstore' },
+        to: { name: '/appstore/home' },
         online: true,
         disabled: false
       },
@@ -140,6 +140,7 @@ export default {
     ],
   }),
   created() {
+    console.log(this.menuItems[1])
     if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
       this.dialog = true
       this.menuItems[1].disabled = true
@@ -155,6 +156,7 @@ export default {
   },
   methods: {
     async installFiles() {
+      const menu = this.menuItems
       this.dialog = false
       if (!fs.existsSync(userData)) {
         fs.mkdirSync(userData)
@@ -165,7 +167,7 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/TegraRcmSmash/TegraRcmSmash.exe',
           path.join(userData, 'TegraRcmSmash')
         ).on('close', function () {
-          this.menuItems[1].disabled = false
+          menu[1].disabled = false
           console.log('Download TegraRCMSmash')
         })
       }
@@ -175,7 +177,7 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/apx_driver/apx_driver.zip',
           path.join(userData, 'apx_driver')
         ).on('close', async function () {
-          this.menuItems[1].disabled = false
+          menu[1].disabled = false
           console.log('Download apx_driver.zip')
           await fs
             .createReadStream(
@@ -205,7 +207,7 @@ export default {
           'https://raw.githubusercontent.com/MeatReed/NSMultiTools/additionalFiles/ssnc/serials.json',
           function (response) {
             response.on('finish', function () {}).pipe(file)
-            this.menuItems[2].disabled = false
+            menu[2].disabled = false
           }
         )
       }

@@ -113,7 +113,7 @@ export default {
     search: null,
     drawer: false,
     items: [
-      { title: 'Accueil', icon: 'mdi-home', to: '/appstore' },
+      { title: 'Accueil', icon: 'mdi-home', to: '/appstore/home' },
       { title: 'Jeux', icon: 'mdi-play', to: '/appstore/games' },
       {
         title: 'Emulateurs',

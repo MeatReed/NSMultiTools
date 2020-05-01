@@ -1,7 +1,7 @@
 <template>
   <v-app id="inspire">
     <v-content>
-      <nuxt />
+      <nuxt keep-alive />
     </v-content>
     <v-footer app>
       <span>Made by MeatReed</span>

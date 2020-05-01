@@ -21,7 +21,7 @@
                 Catégorie {{ categoryName[category] }}
               </v-toolbar-title>
               <v-spacer />
-              <v-btn nuxt to="/appstore">
+              <v-btn nuxt to="/appstore/home">
                 Retourner à l'accueil
               </v-btn>
             </v-app-bar>

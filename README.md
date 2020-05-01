@@ -21,7 +21,7 @@
 
 #### Build Setup
 
-Lastest Build : https://send.firefox.com/download/752cce48868dd78d/#2ZzJMtQtkLfgu3q8fs05Gw
+Lastest Build : https://mega.nz/file/OUtHTbya#wgOlUSKFtcTPAoamJdYoqFSHz29PEE7DoQOhAcqv8KQ
 
 ``` bash
 # install dependencies

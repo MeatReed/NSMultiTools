@@ -20,23 +20,23 @@
               row
               label="Canaux de diffusion:"
             >
-              <v-radio label="Vidéo" />
-              <v-radio label="Audio" />
-              <v-radio label="Tout" />
+              <v-radio label="Vidéo" value="--no-audio" />
+              <v-radio label="Audio" value="--no-video" />
+              <v-radio label="Tout" value=" " />
             </v-radio-group>
           </v-col>
         </v-row>
         <v-row>
           <v-col class="d-flex justify-center mb-6">
             <v-radio-group v-model="radioStream" row label="Méthode du flux:">
-              <v-radio label="RTSP(Recommandé)" />
-              <v-radio label="mvp" />
+              <v-radio label="RTSP(Recommandé)" value="rtsp" />
+              <!-- <v-radio label="mpv" value="mpv" /> -->
             </v-radio-group>
           </v-col>
         </v-row>
         <v-row>
           <v-col class="d-flex justify-center mb-6">
-            <v-btn @click="launch()">
+            <v-btn :disabled="btnLaunchDisabled" @click="launch()">
               Lancer SysDVR
             </v-btn>
           </v-col>
@@ -91,6 +91,7 @@ export default {
     radioStream: null,
     dialogDriver: false,
     args: [],
+    btnLaunchDisabled: false
   }),
   methods: {
     async installDriver() {
@@ -98,6 +99,8 @@ export default {
       exec(`${userData}/apx_driver/InstallDriver.exe`)
     },
     launch() {
+      this.args = []
+      this.btnLaunchDisabled = true
       if (this.radioChannel === null) {
         this.alertMessage =
           "Vous n'avez sélectionné aucun canaux de diffusion !"
@@ -108,16 +111,9 @@ export default {
         this.alertModel = true
         this.alertType = 'error'
       }
-
-      if (this.radioChannel === 0) {
-        this.args.push('--no-audio')
-      } else if (this.radioChannel === 1) {
-        this.args.push('--no-video')
-      }
-
-      if (this.radioStream === 0) {
-        this.args.push('rtsp')
-      }
+      this.args.push(this.radioStream)
+      this.args.push(this.radioChannel)
+      console.log(this.radioChannel, this.radioStream, this.args)
 
       let smash = spawn(`${userData}/UsbStream/SysDVR-Client.exe`, this.args, {
         shell: true,
@@ -125,6 +121,10 @@ export default {
         windowsHide: true,
         stdio: 'inherit',
       })
+
+      smash.on('close', (code) => {
+        this.btnLaunchDisabled = false
+      });
     },
   },
 }

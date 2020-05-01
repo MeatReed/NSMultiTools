@@ -102,17 +102,18 @@ export default {
         download: true,
         disabled: false
       },
-      /*{
-        name: 'SysDVR',
-        img: require('../assets/sysdvr.png'),
-        to: { name: '/sysdvr' },
-        online: false,
-        disabled: false
-      },*/
       {
         name: 'IMSP',
         img: require('../assets/imsp.png'),
         to: { name: '/imsp' },
+        online: false,
+        download: true,
+        disabled: false
+      },
+      {
+        name: 'SysDVR',
+        img: require('../assets/sysdvr.png'),
+        to: { name: '/sysdvr' },
         online: false,
         download: true,
         disabled: false
@@ -140,7 +141,6 @@ export default {
     ],
   }),
   created() {
-    console.log(this.menuItems[1])
     if (!fs.existsSync(path.join(userData, 'TegraRcmSmash'))) {
       this.dialog = true
       this.menuItems[1].disabled = true
@@ -150,9 +150,10 @@ export default {
     } else if (!fs.existsSync(path.join(userData, 'ssnc'))) {
       this.dialog = true
       this.menuItems[2].disabled = true
-    } /* else if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
+    } else if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
       this.dialog = true
-    }*/
+      this.menuItems[3].disabled = true
+    }
   },
   methods: {
     async installFiles() {
@@ -167,8 +168,8 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/TegraRcmSmash/TegraRcmSmash.exe',
           path.join(userData, 'TegraRcmSmash')
         ).on('close', function () {
-          menu[1].disabled = false
           console.log('Download TegraRCMSmash')
+          menu[1].disabled = false
         })
       }
       if (!fs.existsSync(path.join(userData, 'apx_driver'))) {
@@ -177,13 +178,13 @@ export default {
           'https://github.com/MeatReed/NSMultiTools/raw/additionalFiles/apx_driver/apx_driver.zip',
           path.join(userData, 'apx_driver')
         ).on('close', async function () {
-          menu[1].disabled = false
           console.log('Download apx_driver.zip')
           await fs
             .createReadStream(
               path.join(userData, 'apx_driver', 'apx_driver.zip')
             )
             .pipe(unzipper.Extract({ path: path.join(userData) }))
+          menu[1].disabled = false
         })
       }
       if (!fs.existsSync(path.join(userData, 'UsbStream'))) {
@@ -196,6 +197,7 @@ export default {
           await fs
             .createReadStream(path.join(userData, 'UsbStream', 'UsbStream.zip'))
             .pipe(unzipper.Extract({ path: path.join(userData, 'UsbStream') }))
+          menu[3].disabled = false
         })
       }
       if (!fs.existsSync(path.join(userData, 'ssnc'))) {

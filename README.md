@@ -21,6 +21,8 @@
 
 #### Build Setup
 
+Lastest Build : https://send.firefox.com/download/752cce48868dd78d/#2ZzJMtQtkLfgu3q8fs05Gw
+
 ``` bash
 # install dependencies
 yarn install

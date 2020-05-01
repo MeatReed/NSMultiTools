@@ -21,7 +21,7 @@
 
 #### Build Setup
 
-Lastest Build : https://mega.nz/file/OUtHTbya#wgOlUSKFtcTPAoamJdYoqFSHz29PEE7DoQOhAcqv8KQ
+Lastest Build : https://mega.nz/file/uMV0XYxa#qpDmmuQ6OjQGfL9rBFtoXfD3CXG7tf3HZhpxrxGzN8w
 
 ``` bash
 # install dependencies

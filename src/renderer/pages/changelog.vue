@@ -2,7 +2,19 @@
   <div>
     <app-header />
     <v-content>
-      <v-container fluid class="fill-witdh">
+      <v-container fluid v-if="$fetchState.pending">
+        <v-row v-if="$fetchState.pending">
+          <v-col class="text-center">
+            <v-progress-circular
+              :size="70"
+              :width="7"
+              indeterminate
+              color="primary"
+            />
+          </v-col>
+        </v-row>
+      </v-container>
+      <v-container v-else fluid class="fill-witdh">
         <v-row v-for="(item, index) of gitRelease" :key="index">
           <v-col>
             <v-card class="mx-auto" outlined>
@@ -40,19 +52,9 @@ export default {
   data: () => ({
     gitRelease: null,
   }),
-  created() {
-    try {
-      axios
-        .get('https://api.github.com/repos/MeatReed/NSMultiTools/releases')
-        .then(async (response) => {
-          this.gitRelease = response.data
-        })
-        .catch((error) => {
-          console.log(error)
-        })
-    } catch (err) {
-      console.log(err)
-    }
+  async fetch() {
+    const releaseResponse = await axios.get('https://api.github.com/repos/MeatReed/NSMultiTools/releases')
+    this.gitRelease = releaseResponse.data
   },
   methods: {
     formatDate(date) {
@@ -69,3 +71,14 @@ export default {
   },
 }
 </script>
+
+<style>
+img {
+  z-index: 0;
+  position: relative;
+  overflow: hidden;
+  flex: 1 0 auto;
+  max-width: 100%;
+  display: flex;
+}
+</style>

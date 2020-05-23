@@ -7,7 +7,7 @@
           <v-col cols="4">
             <v-avatar tile size="250">
               <v-img
-                src="https://cdn.discordapp.com/avatars/556940395473534986/13ed12f8f2d6e0e893d54fd7375b342c.png?size=2048"
+                src="https://cdn.discordapp.com/avatars/556940395473534986/d2c77c94ab7934b4862fb097bd9eecd9.png?size=4096"
               />
             </v-avatar>
           </v-col>
